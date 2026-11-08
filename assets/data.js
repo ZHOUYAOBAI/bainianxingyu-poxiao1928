@@ -3,7 +3,13 @@ window.PX = {
  "meta": {
   "title": "百年星语·破晓 1928",
   "format": "三幕十四场（暂定）",
-  "team": "云南民族大学 马笛团队原创红色音乐剧",
+  "team": "云南民族大学 马笛红色音乐剧原创团队",
+  "ribbon": [
+   "云南民族大学",
+   "红色音乐剧",
+   "原创团队"
+  ],
+  "lead": "马笛",
   "tag": "（云南本土红色题材）",
   "credits": [
    [
@@ -11,8 +17,8 @@ window.PX = {
     "白耀洲　孙子岚"
    ],
    [
-    "作曲",
-    "彭侠颖　孙子岚"
+    "音乐",
+    "彭侠颖　白耀洲　孙子岚"
    ]
   ],
   "date": "（2025 年 11 月中稿）"
@@ -9036,7 +9042,7 @@ window.PX = {
   }
  },
  "demo": {
-  "_note": "第 02 章「试听」数据。5 段创作阶段 demo 录音，取自作者提供的演示站 bainianxingyu2；前 4 段唱词不另存副本，直接从 v15 正文按曲号抽取（build_data.py 写入 lyricGroups），保证与正文逐字一致；第 5 段为团队新作，剧本中尚无对应曲，歌词由剧方提供，标记为未定稿。figures 为查尼皮会址公开报道图片，用于第 01 章「创作缘起」，仅作场景示意。",
+  "_note": "第 02 章「试听」数据。5 段创作阶段 demo 录音，取自作者提供的演示站 bainianxingyu2；前 4 段唱词不另存副本，直接从 v15 正文按曲号抽取（build_data.py 写入 lyricGroups），保证与正文逐字一致；第 5 段为团队新作，剧本中尚无对应曲，歌词由剧方提供，标记为未定稿。按作者 2026-11 更新，demo 阶段不标角色名：singer 与 cite 中的角色称谓已去除，lyricGroups 里的角色信息仅留在数据层供回溯，页面上不显示。figures 为查尼皮会址公开报道图片，用于第 01 章「创作缘起」，仅作场景示意。",
   "id": "demo",
   "idx": "02",
   "title": "试听",
@@ -9047,11 +9053,11 @@ window.PX = {
     "no": "1",
     "title": "追光",
     "form": "独唱",
-    "singer": "前半段小满对口型，后半段真唱",
+    "singer": "前半段对口型，后半段真唱",
     "dur": "1′44″",
     "audio": "assets/audio/zhuiguang.mp3",
     "songNo": "1",
-    "cite": "No.1 追光 · 小满独唱（剧本 v15 原文）",
+    "cite": "No.1 追光（剧本 v15 原文）",
     "lyricGroups": [
      [
       "",
@@ -9077,7 +9083,7 @@ window.PX = {
     "no": "2",
     "title": "凝聚",
     "form": "领唱与合唱",
-    "singer": "吴澄领唱，众人齐唱",
+    "singer": "",
     "dur": "2′55″",
     "audio": "assets/audio/ningju.mp3",
     "songNo": "3",
@@ -9155,11 +9161,11 @@ window.PX = {
     "no": "3",
     "title": "血绢誓",
     "form": "二重唱",
-    "singer": "吴澄／李国柱",
+    "singer": "",
     "dur": "2′32″",
     "audio": "assets/audio/xuejuan.mp3",
     "songNo": "19",
-    "cite": "No.19 血绢誓 · 吴澄／李国柱 二重唱（剧本 v15 原文）",
+    "cite": "No.19 血绢誓（剧本 v15 原文）",
     "lyricGroups": [
      [
       "吴澄",
@@ -9191,8 +9197,8 @@ window.PX = {
    {
     "no": "4",
     "title": "起来，全世界受苦的人",
-    "form": "合唱",
-    "singer": "四人合唱，全剧最高点",
+    "form": "国际歌合唱段",
+    "singer": "全剧最高点",
     "dur": "0′59″",
     "audio": "assets/audio/guojige.mp3",
     "songNo": "23",
@@ -9241,8 +9247,8 @@ window.PX = {
    {
     "no": "5",
     "title": "共和国的星辉",
-    "form": "新作 · 尚未定稿",
-    "singer": "团队新写的一首，剧本里还没定位置",
+    "form": "新作 · 尚未定稿，暂列试听末位",
+    "singer": "",
     "dur": "2′56″",
     "audio": "assets/audio/xinghui.mp3",
     "isNew": true,

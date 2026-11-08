@@ -107,10 +107,12 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   border:2px solid var(--gold);
   box-shadow:0 0 0 4px rgba(201,162,39,.2),0 18px 40px rgba(200,16,46,.34);
   animation:flagSheen 7s ease-in-out infinite}
+.hero-team .flag .rseg{white-space:nowrap}
 @keyframes flagSheen{0%,66%{background-position:-130% 0,0 0,0 0}
   84%,100%{background-position:230% 0,0 0,0 0}}
 .hero-team .flag::after{content:"";position:absolute;left:9px;right:9px;bottom:-9px;height:9px;
-  background:linear-gradient(90deg,#8e0b20,var(--red) 45%,#8e0b20);
+  z-index:-1;border-radius:0 0 5px 5px;filter:blur(3px);
+  background:linear-gradient(180deg,rgba(142,11,32,.5),rgba(142,11,32,0));
   clip-path:polygon(0 0,100% 0,97.5% 100%,2.5% 100%)}
 .hero-team .flag::before{content:"";position:absolute;inset:4px;border:1px solid rgba(255,255,255,.36);
   pointer-events:none}
@@ -123,7 +125,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 .hero-title::after{content:"";display:block;width:104px;height:3px;margin:26px 0 0;
   background:linear-gradient(90deg,var(--gold),rgba(201,162,39,0))}
 
-.hero-format{display:inline-block;margin:26px 0 8px;padding:6px 20px;font-family:var(--serif);
+.hero-spec{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:26px 0 8px}
+.hero-ver{margin:0;color:var(--dim);font-size:12.5px;letter-spacing:.1em}
+.hero-format{display:inline-block;margin:0;padding:6px 20px;font-family:var(--serif);
   font-size:17px;letter-spacing:.16em;color:var(--red);font-weight:600;
   border:1px solid rgba(200,16,46,.35);border-radius:999px;background:rgba(200,16,46,.06)}
 .hero-tag{margin:0;color:var(--muted);font-size:13px;letter-spacing:.12em}
@@ -132,6 +136,18 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   border-top:1px solid rgba(200,16,46,.24);font-size:13.5px;color:var(--paper2)}
 .hero-credits b{font-weight:400;color:var(--muted);margin-right:8px;letter-spacing:.1em}
 .hero-credits .dim{color:var(--dim)}
+.hero-credits .hc-lead{display:inline-flex;align-items:baseline;gap:12px;
+  padding-right:22px;border-right:1px solid rgba(200,16,46,.2)}
+.hero-credits .hc-lead .lb{font-weight:400;color:var(--muted);letter-spacing:.16em;
+  margin-right:0;font-size:12.5px}
+.hero-credits .hc-lead .who{font-family:var(--serif);font-size:clamp(26px,2.5vw,36px);
+  font-weight:700;letter-spacing:.1em;color:var(--red);margin-right:0;line-height:1;
+  text-shadow:0 2px 18px rgba(200,16,46,.16)}
+.hero-credits .hc-lead .who::after{content:"";display:block;width:100%;height:2px;margin-top:7px;
+  background:linear-gradient(90deg,var(--red),var(--gold))}
+@media (max-width:640px){
+  .hero-credits .hc-lead{border-right:0;padding-right:0}
+}
 
 .hero-go{display:inline-flex;align-items:center;gap:9px;margin-top:38px;padding:13px 32px;
   background:linear-gradient(135deg,#e0313f,var(--red));border:1px solid #8e0b20;border-radius:999px;
@@ -198,6 +214,9 @@ tbody tr:hover{background:rgba(43,31,27,.028)}
 .songs tbody tr{cursor:pointer}
 .songs td:first-child{color:var(--red-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .songs td:nth-child(2){color:var(--paper);font-family:var(--serif);font-size:15px;white-space:nowrap}
+.songs th,.songs td{white-space:nowrap}
+.songs{min-width:840px}
+.scroll-hint{display:none;margin:8px 0 0;font-size:12px;color:var(--dim);letter-spacing:.06em;text-align:right}
 .songs tr.on{background:rgba(200,16,46,.14)}
 .songs td.form{color:var(--paper2)}
 
@@ -276,7 +295,7 @@ tbody tr:hover{background:rgba(43,31,27,.028)}
 .lyric-lines{font-family:var(--serif);font-size:calc(var(--fs) * 1.14);line-height:2.05;
   color:var(--paper);margin:0;letter-spacing:.03em}
 .lyric-lines span{display:block}
-.rhyme{display:inline-block;margin-top:7px;font-size:11px;letter-spacing:.14em;color:var(--dim);
+.rhyme{display:inline-block;margin-top:7px;font-size:12px;letter-spacing:.14em;color:var(--dim);
   border:1px solid var(--line-2);border-radius:4px;padding:1px 7px}
 
 /* 高亮某人 */
@@ -451,6 +470,7 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   border-radius:999px;padding:3px 9px;transform:translateY(-3px)}
 .dm-meta{margin:6px 0 0;font-size:12.5px;color:var(--muted);letter-spacing:.06em;line-height:1.7}
 .dm-form{color:var(--red);margin-right:14px}
+.dm-singer::before{content:"·";margin-right:10px;color:var(--red-3)}
 .dm-time{grid-area:time;align-self:center;font-size:12.5px;color:var(--muted);
   font-variant-numeric:tabular-nums;white-space:nowrap}
 .dm-play{grid-area:play;align-self:center;width:40px;height:40px;border-radius:50%;padding:0;
@@ -472,6 +492,8 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
 .dm-lyric{grid-area:ly;margin-top:18px;padding-top:18px;border-top:1px dashed var(--line-2)}
 .dm-w{margin:14px 0 4px;font-size:11.5px;letter-spacing:.2em;color:var(--red)}
 .dm-w:first-child{margin-top:0}
+.dm-sep{height:1px;margin:15px 0;
+  background:linear-gradient(90deg,transparent,rgba(200,16,46,.24) 22%,rgba(200,16,46,.24) 78%,transparent)}
 .dm-l{margin:0;font-family:var(--serif);font-size:15px;line-height:1.95;color:var(--paper2)}
 .dm-gap{height:9px;margin:0}
 .dm-cite{display:block;margin-top:16px;font-size:11.5px;font-style:normal;
@@ -507,7 +529,8 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   .hero-inner{order:2;text-align:center}
   .hero-title::after{margin-left:auto;margin-right:auto}
   .hero-credits{justify-content:center}
-  .hero-team .flag{white-space:normal;padding:11px 22px;letter-spacing:.14em}
+  .hero-team .flag{white-space:normal;padding:11px 20px 11px 40px;letter-spacing:.14em}
+  .hero-team .flag-star{left:12px;font-size:13px}
 }
 @media (max-width:700px){
   html{scroll-padding-top:104px}
@@ -566,3 +589,20 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
 
 /* 分曲表统计行 */
 #songSummary{margin-top:14px;font-size:13px;color:var(--paper2);letter-spacing:.02em}
+
+/* ───────────── 窄屏顶栏（≤430px）收纳 ───────────── */
+@media (max-width:430px){
+  .topbar{gap:10px;padding:0 11px}
+  .brand{font-size:13px;gap:7px}
+  .tbtn{padding:5px 8px;font-size:12px}
+  .hero-team .flag{padding:10px 16px 10px 36px;font-size:13.5px;letter-spacing:.12em}
+  .hero-team .flag-star{left:10px;font-size:12px}
+}
+@media (max-width:360px){
+  .brand-sub{display:none}
+  .brand{font-size:14px}
+}
+
+@media (max-width:900px){
+  .scroll-hint{display:block}
+}

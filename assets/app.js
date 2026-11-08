@@ -23,19 +23,30 @@
   /* ───────────── 封面引用 ───────────── */
   (function hero() {
     var m = D.meta;
-    var team = $('.hero-team .flag') || $('.hero-team');
-    team.textContent = m.team;
+    var ft = $('.hero-team .flag-text') || $('.hero-team .flag') || $('.hero-team');
+    ft.textContent = '';
+    var segs = Array.isArray(m.ribbon) ? m.ribbon : (m.ribbon ? [m.ribbon] : [m.team]);
+    segs.forEach(function (s, i) {
+      if (i) ft.appendChild(document.createTextNode('\u3000'));
+      ft.appendChild(el('span', 'rseg', s));
+    });
     $('.hero-tag').textContent = m.tag;
     var c = $('.hero-credits');
     c.innerHTML = '';
+    if (m.lead) {
+      var lead = el('span', 'hc-lead');
+      lead.appendChild(el('b', 'lb', '主创'));
+      lead.appendChild(el('b', 'who', m.lead));
+      c.appendChild(lead);
+    }
     m.credits.forEach(function (p) {
       var s = el('span');
       s.appendChild(el('b', null, p[0]));
       s.appendChild(document.createTextNode(p[1]));
       c.appendChild(s);
     });
-    var d = el('span', 'dim', m.date.replace(/[（）]/g, ''));
-    c.appendChild(d);
+    var ver = $('#heroVer');
+    if (ver) ver.textContent = m.date.replace(/[（）]/g, '');
   })();
 
   /* ───────────── 01 剧情简介 ───────────── */
@@ -116,7 +127,7 @@
       main.appendChild(h);
       var meta = el('p', 'dm-meta');
       meta.appendChild(el('span', 'dm-form', t.form));
-      meta.appendChild(el('span', 'dm-singer', t.singer));
+      if (t.singer) meta.appendChild(el('span', 'dm-singer', t.singer));
       main.appendChild(meta);
       row.appendChild(main);
 
@@ -141,8 +152,8 @@
 
       var ly = el('div', 'dm-lyric');
       if (t.lyricGroups) {
-        t.lyricGroups.forEach(function (g) {
-          if (g[0]) ly.appendChild(el('p', 'dm-w', g[0]));
+        t.lyricGroups.forEach(function (g, gi) {
+          if (gi) ly.appendChild(el('p', 'dm-sep'));
           g[1].forEach(function (line) { ly.appendChild(el('p', 'dm-l', line)); });
         });
       } else if (t.stanzas) {
@@ -691,7 +702,7 @@
       dl.appendChild(el('dd', null, c[1]));
     });
     dl.appendChild(el('dt', null, '出品'));
-    dl.appendChild(el('dd', null, D.meta.team.replace('原创红色音乐剧', '').trim()));
+    dl.appendChild(el('dd', null, D.meta.team));
     dl.appendChild(el('dt', null, '版本'));
     dl.appendChild(el('dd', null, D.meta.format + '　' + D.meta.date.replace(/[（）]/g, '')));
   })();
