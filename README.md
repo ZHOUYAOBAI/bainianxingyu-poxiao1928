@@ -77,13 +77,21 @@ assets/data.js        剧本数据（由 docx 解析生成，勿手改）
 
 除以上五项外，全文未作任何改写、增补或删节；原文中重复出现的唱词行（如 No.3「八个人里 四个连自己的名字都写不全」原稿连写两遍）亦按原样保留。
 
-## GitHub Pages 上线
+## GitHub Pages 上线（已发布）
 
-仓库根目录即站点根目录（`.github/workflows/pages.yml` 已配置 Pages 自动发布）：
+线上地址：**<https://zhouyaobai.github.io/baonianxingyu-poxiao1928/>**
 
-1. 新建 GitHub 仓库（建议名 `baonianxingyu-poxiao1928`），不要勾选 README / .gitignore
-2. 把本目录内容推到仓库根目录
-3. 仓库 → Settings → Pages → Source 选 **GitHub Actions**
-4. 推上去后自动发布，地址为 `https://<你的用户名>.github.io/<仓库名>/`
+仓库：<https://github.com/ZHOUYAOBAI/baonianxingyu-poxiao1928>
 
-本地预览与线上完全一致：无构建步骤、无环境变量、无外部请求。
+- 仓库根目录即站点根目录，`.github/workflows/pages.yml` 配置 Pages 自动发布（推 `main` 即发版）
+- 纯静态，无构建步骤、无环境变量、无外部请求、无埋点
+- 本地 `python3 -m http.server` 与线上表现完全一致（33 项交互验收 + 1999 条内容覆盖比对均在线上复跑通过）
+
+后续更新：改完 `outputs/破晓1928_音乐剧_数字剧本站/` 内的文件后，
+
+```bash
+cd outputs/破晓1928_音乐剧_数字剧本站
+git add -A && git commit -m "说明" && git push
+```
+
+约 1–2 分钟后自动重新发布。
