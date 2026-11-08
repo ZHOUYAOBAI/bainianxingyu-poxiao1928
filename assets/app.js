@@ -595,7 +595,7 @@
   /* 滚动高亮 */
   var topnav = $('#topnav');
   var actnav = $('#actnav');
-  var sections = ['story', 'guide', 'people', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
+  var sections = ['origin', 'story', 'guide', 'people', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
     return document.getElementById(id);
   });
   var acts = $$('.act');
