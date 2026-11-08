@@ -19,11 +19,13 @@
   </a>
   <nav class="topnav" id="topnav">
     <a href="#story">剧情</a>
+    <a href="#guide">导览</a>
     <a href="#people">人物</a>
     <a href="#score">分曲</a>
     <a href="#script">剧本</a>
     <a href="#timeline">年表</a>
     <a href="#star">第三颗星</a>
+    <a href="#meaning">意义</a>
     <a href="#end">剧终</a>
   </nav>
   <div class="toptools">
@@ -36,11 +38,13 @@
 
 <div class="drawer" id="drawer" hidden>
   <a href="#story">剧情简介</a>
+  <a href="#guide">分幕导览</a>
   <a href="#people">人物表</a>
   <a href="#score">分曲表</a>
   <a href="#script">剧本正文</a>
   <a href="#timeline">年表</a>
   <a href="#star">第三颗星</a>
+  <a href="#meaning">创作意义</a>
   <a href="#end">剧终</a>
 </div>
 
@@ -264,10 +268,26 @@
   </div>
 </section>
 
+<!-- ══════════ 分幕导览 ══════════ -->
+<section class="sec sec-guide" id="guide">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="idx">02</span>分幕导览</h2>
+    <p class="sec-lead" id="guideLead"></p>
+    <p class="draft-note">
+      <b>稿次说明</b>本节是作者另行提供的<strong>音乐剧 14 场版</strong>分幕导览（含每场音乐设计），
+      与正文 v15 的「场 1—场 10（另含场 7B）」插叙式场号、以及 28 首分曲表属不同稿次；
+      导览中出现的唱段名沿用该稿，<strong>正文分曲表以 v15 为准</strong>。两套编号并存，见页脚编者注⑥。
+    </p>
+    <div id="guideActs"></div>
+    <h3 class="sub-title">场次节奏总览</h3>
+    <div class="table-scroll"><table class="tbl" id="guideRhythm"></table></div>
+  </div>
+</section>
+
 <!-- ══════════ 人物表 ══════════ -->
 <section class="sec" id="people">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">02</span>人物表</h2>
+    <h2 class="sec-title"><span class="idx">03</span>人物表</h2>
     <p class="sec-lead">按声部由高到低排列。点人物名可在正文中高亮该角色的全部台词与唱段。</p>
     <div class="toolbar">
       <div class="chips" id="castFilters"></div>
@@ -294,7 +314,7 @@
 <!-- ══════════ 分曲表 ══════════ -->
 <section class="sec" id="score">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">03</span>分曲表</h2>
+    <h2 class="sec-title"><span class="idx">04</span>分曲表</h2>
     <p class="sec-lead">二十八首。点任一行跳到正文对应曲目。</p>
     <div class="toolbar">
       <div class="chips" id="songFilters"></div>
@@ -313,7 +333,7 @@
 <!-- ══════════ 剧本正文 ══════════ -->
 <section class="sec sec-script" id="script">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">04</span>剧本正文</h2>
+    <h2 class="sec-title"><span class="idx">05</span>剧本正文</h2>
     <div class="toolbar script-tools">
       <input class="search wide" id="scriptSearch" type="search" placeholder="在正文中检索：角色、曲名、台词…" autocomplete="off">
       <div class="spacer"></div>
@@ -332,7 +352,7 @@
 <!-- ══════════ 年表 ══════════ -->
 <section class="sec" id="timeline">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">05</span>年表</h2>
+    <h2 class="sec-title"><span class="idx">06</span>年表</h2>
     <p class="sec-lead">一条直线九十六年。每一格都是一个人真的会遇到的日子。</p>
     <ol class="tl" id="tl"></ol>
   </div>
@@ -341,7 +361,7 @@
 <!-- ══════════ 第三颗星 ══════════ -->
 <section class="sec sec-star" id="star">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">06</span>第三颗星</h2>
+    <h2 class="sec-title"><span class="idx">07</span>第三颗星</h2>
     <div class="star-grid">
       <figure class="star-fig">
         <svg viewBox="0 0 300 300" role="img" aria-label="红心布上的三颗星，第三颗的位置上是一个「念」字">
@@ -383,6 +403,30 @@
   </div>
 </section>
 
+<!-- ══════════ 创作意义 ══════════ -->
+<section class="sec sec-meaning" id="meaning">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="idx">08</span>创作意义</h2>
+    <p class="sec-lead">面向校领导的汇报表述。以下内容为作者原稿。</p>
+    <p class="draft-note"><b>拟稿对象</b>原稿拟稿对象为云南民族大学尹世堂副校长 · 民大艺术学院。</p>
+
+    <div class="m-lead">
+      <span class="m-lead-label" id="meaningLabel"></span>
+      <p class="m-lead-text" id="meaningLead"></p>
+    </div>
+
+    <div class="m-stats" id="meaningStats"></div>
+
+    <div class="m-points" id="meaningPoints"></div>
+
+    <div class="m-brief">
+      <h3 class="sub-title" id="briefLabel"></h3>
+      <p class="m-brief-note" id="briefNote"></p>
+      <blockquote class="m-brief-text" id="briefText"></blockquote>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ 剧终 ══════════ -->
 <section class="sec sec-end" id="end">
   <div class="wrap end-wrap">
@@ -410,6 +454,7 @@
   <p class="dim">③ 分曲表「时长」一列取自正文各曲的曲属性行；原稿分曲表中 No.18、20、23、24、27 的速度为半截写法，此处采用正文完整写法。</p>
   <p class="dim">④ 本页仅为原稿的版式与阅读工具，不含任何改写、增补或删节。</p>
   <p class="dim">⑤ 原稿封面署名「云南民大学院马笛团队原创红色音乐剧」中「云南民大学院」为笔误，本页据作者口述正作「云南民族大学 马笛团队原创红色音乐剧」，其余文字未动。</p>
+  <p class="dim">⑥ 第 02 节「分幕导览」与第 08 节「创作意义」取自作者另行提供的《剧.docx》。导览为音乐剧 14 场版（含终场共 15 场）的场次与音乐设计，与正文 v15 的 11 个插叙式场号、28 首分曲表属不同稿次，两套编号并存；导览中出现的《一盏灯》《等一颗星》《三圈线》《天亮之前》等唱段名属该稿，正文分曲表以 v15 为准。</p>
 </footer>
 
 <script src="assets/data.js"></script>

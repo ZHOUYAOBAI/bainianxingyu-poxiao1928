@@ -344,6 +344,80 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
 .foot .colophon{color:var(--red);font-size:12px;letter-spacing:.22em;margin-top:22px}
 .foot .dim{line-height:2}
 
+/* ---------- 分幕导览（剧.docx） ---------- */
+.sec-guide{background:linear-gradient(180deg,rgba(200,16,46,.035),rgba(200,16,46,0) 320px)}
+.draft-note{margin:0 0 34px;padding:14px 18px;font-size:12.5px;line-height:2;color:var(--muted);
+  background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.38);border-left:3px solid var(--gold);
+  border-radius:3px;max-width:74ch}
+.draft-note b{display:inline-block;font-weight:400;letter-spacing:.16em;color:var(--red);margin-right:10px}
+.draft-note strong{color:var(--paper);font-weight:600}
+
+.g-act{margin:0 0 26px;background:var(--ink2);border:1px solid var(--line-2);border-radius:4px;overflow:hidden}
+.g-act-title{display:flex;align-items:baseline;gap:12px;margin:0;padding:18px 24px 14px;
+  background:linear-gradient(135deg,rgba(200,16,46,.07),rgba(200,16,46,.02));border-bottom:1px solid var(--line-2)}
+.g-act-no{font-family:var(--sans);font-size:11.5px;letter-spacing:.24em;color:var(--red);
+  border:1px solid rgba(200,16,46,.32);border-radius:999px;padding:4px 11px;white-space:nowrap}
+.g-act-name{font-family:var(--serif);font-size:23px;color:var(--paper);letter-spacing:.06em}
+.g-act-meta{display:flex;flex-wrap:wrap;gap:8px 26px;padding:13px 24px;border-bottom:1px dashed var(--line);
+  background:rgba(255,255,255,.6);font-size:13px}
+.g-act-kv{display:flex;align-items:baseline;gap:9px;min-width:0}
+.g-act-k{font-size:11px;letter-spacing:.2em;color:var(--red);font-weight:400}
+.g-act-v{color:var(--paper2)}
+
+.g-scenes{padding:6px 24px 22px}
+.g-scene{padding:16px 0;border-bottom:1px solid var(--line-2)}
+.g-scene:last-child{border-bottom:none}
+.g-scene-head{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
+.g-scene-no{font-family:var(--sans);font-size:11.5px;letter-spacing:.16em;color:var(--gold)}
+.g-scene-name{font-family:var(--serif);font-size:18px;color:var(--red);letter-spacing:.04em}
+.g-plot{margin:0 0 8px;font-family:var(--serif);font-size:15.5px;line-height:2.05;color:var(--paper2);max-width:70ch}
+.g-music{margin:0;padding:9px 14px;font-size:14px;line-height:1.95;color:var(--paper2);
+  background:rgba(200,16,46,.055);border-left:3px solid var(--red);border-radius:0 3px 3px 0;max-width:70ch}
+.g-music::before{content:"音乐设计";display:block;font-size:10.5px;letter-spacing:.2em;color:var(--red);
+  margin-bottom:3px;font-weight:400}
+
+#guideRhythm th{white-space:nowrap}
+#guideRhythm tbody td:first-child{color:var(--red);font-weight:600}
+
+/* ---------- 创作意义（剧.docx） ---------- */
+.sec-meaning{background:linear-gradient(180deg,rgba(200,16,46,.06),rgba(200,16,46,0) 260px)}
+.m-lead{position:relative;margin:0 0 34px;padding:30px 34px;background:var(--ink2);
+  border:1px solid var(--line-2);border-top:3px solid var(--red);border-radius:3px;
+  box-shadow:0 16px 40px rgba(142,11,32,.09)}
+.m-lead-label{display:inline-block;font-size:11px;letter-spacing:.26em;color:var(--red);
+  border:1px solid rgba(200,16,46,.32);border-radius:999px;padding:4px 13px;margin-bottom:16px}
+.m-lead-text{margin:0;font-family:var(--serif);font-size:clamp(19px,2.3vw,25px);line-height:1.85;
+  color:var(--paper);max-width:52ch}
+
+.m-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
+  background:var(--line-2);border:1px solid var(--line-2);margin-bottom:44px}
+.m-stat{background:var(--ink2);padding:20px 16px;text-align:center}
+.m-stat-n{display:block;font-family:var(--serif);font-size:clamp(19px,2.2vw,25px);color:var(--red);
+  line-height:1.3;letter-spacing:.02em}
+.m-stat-l{display:block;margin-top:7px;font-size:11.5px;letter-spacing:.14em;color:var(--muted)}
+
+.m-point{margin:0 0 8px;padding:28px 32px;background:var(--ink2);border:1px solid var(--line-2);
+  border-radius:3px;position:relative}
+.m-point::before{content:"";position:absolute;left:0;top:28px;bottom:28px;width:3px;
+  background:linear-gradient(180deg,var(--red),rgba(200,16,46,0))}
+.m-point-title{display:flex;align-items:baseline;gap:13px;margin:0 0 16px;font-family:var(--serif);font-size:20px;
+  line-height:1.6;color:var(--paper)}
+.m-point-n{flex:none;font-family:var(--sans);font-size:11.5px;font-weight:400;letter-spacing:.14em;color:#fff;
+  background:var(--red);border-radius:999px;padding:4px 11px;transform:translateY(-3px)}
+.m-para{margin:0 0 13px;font-family:var(--serif);font-size:16px;line-height:2.1;color:var(--paper2);max-width:68ch}
+.m-para:last-of-type{margin-bottom:0}
+.m-list-lead{margin:18px 0 10px;font-size:13px;letter-spacing:.14em;color:var(--red)}
+.m-list{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.m-list li{position:relative;padding:11px 16px 11px 40px;font-size:15px;line-height:1.9;color:var(--paper2);
+  background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.34);border-radius:3px}
+.m-list li::before{content:"▸";position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:15px}
+
+.m-brief{margin-top:46px;padding:30px 34px;background:rgba(200,16,46,.05);
+  border:1px solid rgba(200,16,46,.22);border-left:4px solid var(--red);border-radius:3px}
+.m-brief .sub-title{margin:0 0 12px;color:var(--red)}
+.m-brief-note{margin:0 0 18px;font-size:12.5px;line-height:1.95;color:var(--muted);max-width:70ch}
+.m-brief-text{margin:0;font-family:var(--serif);font-size:17px;line-height:2.2;color:var(--paper);text-indent:2em}
+
 /* ---------- 响应式 ---------- */
 @media (max-width:1000px){
   .topnav{display:none}
@@ -373,6 +447,22 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   .hero-epi{font-size:15px}
   .song-body{padding:16px 14px 20px}
   .song-meta{margin-left:0;width:100%;order:9}
+  .g-act-title{padding:15px 16px 12px;flex-wrap:wrap;gap:8px}
+  .g-act-name{font-size:20px}
+  .g-act-meta{padding:11px 16px}
+  .g-act-kv{flex-wrap:wrap;gap:2px 8px}
+  .g-scenes{padding:4px 16px 18px}
+  .g-scene-name{font-size:16.5px}
+  .g-plot{font-size:15px;line-height:1.95}
+  .g-music{font-size:13.5px;line-height:1.9;padding:8px 12px}
+  .m-lead{padding:22px 18px}
+  .m-lead-text{font-size:18px;line-height:1.8}
+  .m-stat{padding:16px 8px}
+  .m-point{padding:22px 18px}
+  .m-point-title{font-size:17.5px;flex-wrap:wrap;gap:9px}
+  .m-para{font-size:15px;line-height:2}
+  .m-brief{padding:22px 18px}
+  .m-brief-text{font-size:15.5px;line-height:2.1;text-indent:2em}
 }
 
 /* ---------- 打印 ---------- */

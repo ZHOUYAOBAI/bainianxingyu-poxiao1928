@@ -46,6 +46,90 @@
     });
   })();
 
+  /* ───────────── 02 分幕导览（作者另稿《剧.docx》） ───────────── */
+  (function guide() {
+    var J = D.ju && D.ju.guide;
+    if (!J) return;
+    $('#guideLead').textContent = J.lead;
+    var box = $('#guideActs');
+    J.acts.forEach(function (a) {
+      var card = el('div', 'g-act');
+      var h = el('h3', 'g-act-title');
+      h.appendChild(el('span', 'g-act-no', a.label));
+      h.appendChild(el('span', 'g-act-name', a.title));
+      card.appendChild(h);
+      var meta = el('div', 'g-act-meta');
+      [['时间', a.time], ['核心事件', a.event]].forEach(function (kv) {
+        var pair = el('span', 'g-act-kv');
+        pair.appendChild(el('span', 'g-act-k', kv[0]));
+        pair.appendChild(el('span', 'g-act-v', kv[1]));
+        meta.appendChild(pair);
+      });
+      card.appendChild(meta);
+      var list = el('div', 'g-scenes');
+      a.scenes.forEach(function (s) {
+        var sc = el('div', 'g-scene');
+        var sh = el('div', 'g-scene-head');
+        sh.appendChild(el('span', 'g-scene-no', s.no));
+        sh.appendChild(el('span', 'g-scene-name', '《' + s.name + '》'));
+        sc.appendChild(sh);
+        s.lines.forEach(function (L) {
+          sc.appendChild(el('p', L.t === 'music' ? 'g-music' : 'g-plot', L.s));
+        });
+        list.appendChild(sc);
+      });
+      card.appendChild(list);
+      box.appendChild(card);
+    });
+    var t = $('#guideRhythm');
+    var thead = el('thead');
+    var tr = el('tr');
+    J.rhythm.head.forEach(function (h) { tr.appendChild(el('th', null, h)); });
+    thead.appendChild(tr);
+    t.appendChild(thead);
+    var tb = el('tbody');
+    J.rhythm.rows.forEach(function (r) {
+      var row = el('tr');
+      r.forEach(function (c) { row.appendChild(el('td', null, c)); });
+      tb.appendChild(row);
+    });
+    t.appendChild(tb);
+  })();
+
+  /* ───────────── 08 创作意义（作者另稿《剧.docx》） ───────────── */
+  (function meaning() {
+    var M = D.ju && D.ju.meaning;
+    if (!M) return;
+    $('#meaningLabel').textContent = M.label;
+    $('#meaningLead').textContent = M.lead;
+    var st = $('#meaningStats');
+    M.stats.forEach(function (p) {
+      var d = el('div', 'm-stat');
+      d.appendChild(el('b', 'm-stat-n', p[0]));
+      d.appendChild(el('span', 'm-stat-l', p[1]));
+      st.appendChild(d);
+    });
+    var box = $('#meaningPoints');
+    M.points.forEach(function (p) {
+      var c = el('div', 'm-point');
+      var h = el('h3', 'm-point-title');
+      h.appendChild(el('span', 'm-point-n', p.n));
+      h.appendChild(el('span', 'm-point-t', p.title));
+      c.appendChild(h);
+      p.paras.forEach(function (t) { c.appendChild(el('p', 'm-para', t)); });
+      if (p.listLead) {
+        c.appendChild(el('p', 'm-list-lead', p.listLead));
+        var ul = el('ul', 'm-list');
+        p.list.forEach(function (li) { ul.appendChild(el('li', null, li)); });
+        c.appendChild(ul);
+      }
+      box.appendChild(c);
+    });
+    $('#briefLabel').textContent = M.briefLabel;
+    $('#briefNote').textContent = M.briefNote;
+    $('#briefText').textContent = M.brief;
+  })();
+
   /* ───────────── 02 人物表 ───────────── */
   var castCat = function (v) {
     v = v || '';
@@ -511,7 +595,7 @@
   /* 滚动高亮 */
   var topnav = $('#topnav');
   var actnav = $('#actnav');
-  var sections = ['story', 'people', 'score', 'script', 'timeline', 'star', 'end'].map(function (id) {
+  var sections = ['story', 'guide', 'people', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
     return document.getElementById(id);
   });
   var acts = $$('.act');
