@@ -79,9 +79,9 @@ assets/data.js        剧本数据（由 docx 解析生成，勿手改）
 
 ## GitHub Pages 上线（已发布）
 
-线上地址：**<https://zhouyaobai.github.io/baonianxingyu-poxiao1928/>**
+线上地址：**<https://zhouyaobai.github.io/bainianxingyu-poxiao1928/>**
 
-仓库：<https://github.com/ZHOUYAOBAI/baonianxingyu-poxiao1928>
+仓库：<https://github.com/ZHOUYAOBAI/bainianxingyu-poxiao1928>
 
 - 仓库根目录即站点根目录，`.github/workflows/pages.yml` 配置 Pages 自动发布（推 `main` 即发版）
 - 纯静态，无构建步骤、无环境变量、无外部请求、无埋点
