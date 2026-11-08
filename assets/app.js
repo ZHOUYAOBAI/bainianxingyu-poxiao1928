@@ -46,6 +46,171 @@
     });
   })();
 
+  /* ───────────── 02 试听（创作阶段 demo 录音） ───────────── */
+  (function demo() {
+    var DM = D.demo;
+    if (!DM) return;
+
+    /* 查尼皮会址图（用于 01 创作缘起） */
+    var figs = $('#originFigs');
+    if (figs && DM.figures) {
+      DM.figures.forEach(function (f) {
+        var box = el('figure', 'o-fig');
+        var img = el('img');
+        img.src = f.src;
+        img.alt = f.cap;
+        img.loading = 'lazy';
+        box.appendChild(img);
+        var cap = el('figcaption');
+        cap.appendChild(document.createTextNode(f.cap));
+        cap.appendChild(el('span', null, f.credit));
+        box.appendChild(cap);
+        figs.appendChild(box);
+      });
+    }
+
+    var lead = $('#demoLead');
+    if (lead) lead.textContent = DM.lead;
+    var note = $('#demoNote');
+    if (note) note.textContent = DM.note;
+
+    var list = $('#demoList');
+    if (!list) return;
+
+    var audio = new Audio();
+    audio.preload = 'none';
+    var cur = null;
+
+    function fmt(t) {
+      if (!t || !isFinite(t)) return '0:00';
+      var m = Math.floor(t / 60), sec = Math.floor(t % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    /* 复位任意一行（切歌、播放结束时用；按行取元素，避免闭包串行） */
+    function resetRow(row) {
+      if (!row) return;
+      row.classList.remove('is-playing');
+      var b = row.querySelector('.dm-play');
+      if (b) {
+        b.classList.remove('is-playing');
+        b.setAttribute('aria-label', '播放 ' + (b.dataset.title || ''));
+      }
+      var i = row.querySelector('.dm-bar i');
+      if (i) i.style.width = '0%';
+      var bf = row.querySelector('.dm-buf');
+      if (bf) bf.style.width = '0%';
+      var tm = row.querySelector('.dm-time');
+      if (tm) tm.textContent = tm.dataset.dur;
+    }
+
+    DM.tracks.forEach(function (t) {
+      var row = el('div', 'dm-row');
+      row.setAttribute('data-src', t.audio);
+      row.appendChild(el('span', 'dm-no', t.no));
+
+      var main = el('div', 'dm-main');
+      var h = el('h3', 'dm-title');
+      h.appendChild(el('span', null, t.title));
+      if (t.isNew) h.appendChild(el('span', 'dm-new', '新'));
+      main.appendChild(h);
+      var meta = el('p', 'dm-meta');
+      meta.appendChild(el('span', 'dm-form', t.form));
+      meta.appendChild(el('span', 'dm-singer', t.singer));
+      main.appendChild(meta);
+      row.appendChild(main);
+
+      var time = el('span', 'dm-time', t.dur);
+      time.dataset.dur = t.dur;
+      row.appendChild(time);
+
+      var btn = el('button', 'dm-play');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', '播放 ' + t.title);
+      btn.dataset.title = t.title;
+      btn.appendChild(el('span', 'dm-ico'));
+      row.appendChild(btn);
+
+      var bar = el('div', 'dm-bar');
+      bar.setAttribute('role', 'slider');
+      bar.setAttribute('tabindex', '0');
+      bar.setAttribute('aria-label', t.title + ' 播放进度');
+      bar.appendChild(el('span', 'dm-buf'));
+      bar.appendChild(el('i'));
+      row.appendChild(bar);
+
+      var ly = el('div', 'dm-lyric');
+      if (t.lyricGroups) {
+        t.lyricGroups.forEach(function (g) {
+          if (g[0]) ly.appendChild(el('p', 'dm-w', g[0]));
+          g[1].forEach(function (line) { ly.appendChild(el('p', 'dm-l', line)); });
+        });
+      } else if (t.stanzas) {
+        t.stanzas.forEach(function (st) {
+          st.forEach(function (line) { ly.appendChild(el('p', 'dm-l', line)); });
+          ly.appendChild(el('p', 'dm-gap'));
+        });
+      }
+      ly.appendChild(el('cite', 'dm-cite', t.cite));
+      row.appendChild(ly);
+
+      list.appendChild(row);
+
+      function setPlaying(on) {
+        row.classList.toggle('is-playing', on);
+        btn.classList.toggle('is-playing', on);
+        btn.setAttribute('aria-label', (on ? '暂停 ' : '播放 ') + t.title);
+      }
+
+      btn.addEventListener('click', function () {
+        if (cur === row) {
+          if (audio.paused) { audio.play(); setPlaying(true); }
+          else { audio.pause(); setPlaying(false); }
+          return;
+        }
+        if (cur) { resetRow(cur); }
+        cur = row;
+        setPlaying(true);
+        audio.src = t.audio;
+        audio.play();
+      });
+
+      bar.addEventListener('click', function (e) {
+        if (cur !== row || !audio.duration) return;
+        var r = bar.getBoundingClientRect();
+        var pct = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+        audio.currentTime = pct * audio.duration;
+      });
+      bar.addEventListener('keydown', function (e) {
+        if (cur !== row || !audio.duration) return;
+        if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); e.preventDefault(); }
+        if (e.key === 'ArrowLeft') { audio.currentTime = Math.max(0, audio.currentTime - 5); e.preventDefault(); }
+      });
+    });
+
+    audio.addEventListener('timeupdate', function () {
+      if (!cur || !audio.duration) return;
+      var i = cur.querySelector('.dm-bar i');
+      if (i) i.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      var tm = cur.querySelector('.dm-time');
+      if (tm) tm.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    });
+    audio.addEventListener('progress', function () {
+      if (!cur || !audio.duration || !audio.buffered.length) return;
+      var end = 0;
+      for (var i = 0; i < audio.buffered.length; i++) {
+        if (audio.buffered.start(i) <= audio.currentTime + 0.1) end = Math.max(end, audio.buffered.end(i));
+      }
+      var bf = cur.querySelector('.dm-buf');
+      if (bf) bf.style.width = (end / audio.duration * 100).toFixed(2) + '%';
+    });
+    audio.addEventListener('ended', function () {
+      if (!cur) return;
+      resetRow(cur);
+      cur = null;
+    });
+  })();
+
   /* ───────────── 02 分幕导览（作者另稿《剧.docx》） ───────────── */
   (function guide() {
     var J = D.ju && D.ju.guide;
@@ -595,7 +760,7 @@
   /* 滚动高亮 */
   var topnav = $('#topnav');
   var actnav = $('#actnav');
-  var sections = ['origin', 'story', 'guide', 'people', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
+  var sections = ['origin', 'demo', 'story', 'guide', 'people', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
     return document.getElementById(id);
   });
   var acts = $$('.act');

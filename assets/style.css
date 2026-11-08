@@ -434,6 +434,58 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   color:var(--paper2);text-indent:2em}
 .o-para:last-child{margin-bottom:0}
 
+/* ---------- 第 02 章「试听」 ---------- */
+.sec-demo{background:linear-gradient(180deg,rgba(200,16,46,.05),rgba(200,16,46,0) 280px)}
+.dm-list{display:grid;gap:14px}
+.dm-row{position:relative;display:grid;gap:0 18px;padding:22px 26px;background:var(--ink2);
+  border:1px solid var(--line-2);border-radius:3px;
+  grid-template-columns:40px minmax(0,1fr) auto auto;
+  grid-template-areas:"no main time play" "no bar bar bar" "ly ly ly ly";
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.dm-row.is-playing{border-color:rgba(200,16,46,.5);box-shadow:0 0 0 3px rgba(200,16,46,.1)}
+.dm-no{grid-area:no;font-family:var(--serif);font-size:21px;color:var(--red);opacity:.5}
+.dm-main{grid-area:main;min-width:0}
+.dm-title{margin:0;font-family:var(--serif);font-size:20px;font-weight:400;color:var(--paper);
+  line-height:1.5;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.dm-new{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:#fff;background:var(--red);
+  border-radius:999px;padding:3px 9px;transform:translateY(-3px)}
+.dm-meta{margin:6px 0 0;font-size:12.5px;color:var(--muted);letter-spacing:.06em;line-height:1.7}
+.dm-form{color:var(--red);margin-right:14px}
+.dm-time{grid-area:time;align-self:center;font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.dm-play{grid-area:play;align-self:center;width:40px;height:40px;border-radius:50%;padding:0;
+  border:1px solid rgba(200,16,46,.45);background:rgba(200,16,46,.07);cursor:pointer;
+  display:grid;place-items:center;transition:background .2s var(--ease),border-color .2s var(--ease)}
+.dm-play:hover{background:var(--red);border-color:var(--red)}
+.dm-ico{width:0;height:0;margin-left:3px;border-left:11px solid var(--red);
+  border-top:7px solid transparent;border-bottom:7px solid transparent;transition:border-color .2s}
+.dm-play:hover .dm-ico{border-left-color:#fff}
+.dm-play.is-playing .dm-ico{width:12px;height:14px;margin-left:0;border:0;
+  background:linear-gradient(90deg,var(--red) 0 4px,transparent 4px 8px,var(--red) 8px 12px)}
+.dm-play.is-playing:hover .dm-ico{background:linear-gradient(90deg,#fff 0 4px,transparent 4px 8px,#fff 8px 12px)}
+.dm-bar{grid-area:bar;position:relative;height:4px;margin-top:18px;border-radius:999px;
+  background:var(--line-2);cursor:pointer}
+.dm-bar:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+.dm-buf{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(200,16,46,.2);border-radius:999px}
+.dm-bar i{position:absolute;left:0;top:0;bottom:0;display:block;width:0;
+  background:var(--red);border-radius:999px}
+.dm-lyric{grid-area:ly;margin-top:18px;padding-top:18px;border-top:1px dashed var(--line-2)}
+.dm-w{margin:14px 0 4px;font-size:11.5px;letter-spacing:.2em;color:var(--red)}
+.dm-w:first-child{margin-top:0}
+.dm-l{margin:0;font-family:var(--serif);font-size:15px;line-height:1.95;color:var(--paper2)}
+.dm-gap{height:9px;margin:0}
+.dm-cite{display:block;margin-top:16px;font-size:11.5px;font-style:normal;
+  letter-spacing:.1em;color:var(--dim)}
+.dm-note{margin:28px 0 0;font-size:12px;line-height:1.9;color:var(--dim);max-width:70ch}
+
+/* 第 01 章 配图 */
+.o-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:40px}
+.o-fig{margin:0}
+.o-fig img{display:block;width:100%;height:186px;object-fit:cover;border-radius:3px;
+  border:1px solid var(--line-2)}
+.o-fig figcaption{margin-top:10px;font-size:12.5px;line-height:1.75;color:var(--paper2)}
+.o-fig figcaption span{display:block;margin-top:3px;font-size:11px;letter-spacing:.04em;color:var(--dim)}
+
 /* ---------- 响应式 ---------- */
 @media (max-width:1000px){
   .topnav{display:none}
@@ -442,6 +494,10 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   .star-fig{max-width:420px}
 }
 @media (max-width:980px){
+  .dm-row{padding:18px 18px;gap:0 12px;grid-template-columns:30px minmax(0,1fr) auto;
+    grid-template-areas:"no main time" "no play play" "bar bar bar" "ly ly ly"}
+  .dm-play{justify-self:end}
+  .dm-title{font-size:18px}
   .o-lead{padding:22px 20px}
   .o-lead-text{text-indent:0}
   .o-para{text-indent:0}
