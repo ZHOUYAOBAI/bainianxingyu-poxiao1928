@@ -35,7 +35,7 @@
     c.innerHTML = '';
     if (m.lead) {
       var lead = el('span', 'hc-lead');
-      lead.appendChild(el('b', 'lb', '主创'));
+      lead.appendChild(el('b', 'lb', '团队负责人'));
       lead.appendChild(el('b', 'who', m.lead));
       c.appendChild(lead);
     }
