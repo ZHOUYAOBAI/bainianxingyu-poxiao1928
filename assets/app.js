@@ -376,6 +376,7 @@
       box.appendChild(c);
     });
     $('#briefLabel').textContent = M.briefLabel;
+    $('#briefLead').textContent = M.lead;
     $('#briefText').textContent = M.brief;
   })();
 

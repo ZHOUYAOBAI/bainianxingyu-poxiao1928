@@ -477,6 +477,8 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   border:1px solid rgba(200,16,46,.22);border-left:4px solid var(--red);border-radius:3px}
 .m-brief .sub-title{margin:0 0 12px;color:var(--red)}
 .m-brief-note{margin:0 0 18px;font-size:12.5px;line-height:1.95;color:var(--muted);max-width:70ch}
+.m-brief-lead{margin:0 0 22px;padding:2px 0 2px 18px;border-left:3px solid var(--red);
+  font-family:var(--serif);font-size:18.5px;font-weight:700;line-height:1.95;color:var(--paper);letter-spacing:.01em}
 .m-brief-text{margin:0;font-family:var(--serif);font-size:17px;line-height:2.2;color:var(--paper);text-indent:2em}
 
 /* ---------- 第 01 章「创作缘起」 ---------- */
@@ -605,6 +607,7 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   .m-para{font-size:15px;line-height:2}
   .m-brief{padding:22px 18px}
   .m-brief-text{font-size:15.5px;line-height:2.1;text-indent:2em}
+  .m-brief-lead{font-size:16px;line-height:1.85;padding-left:13px}
 }
 
 /* ---------- 打印 ---------- */
