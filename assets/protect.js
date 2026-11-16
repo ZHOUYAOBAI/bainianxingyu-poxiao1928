@@ -186,7 +186,10 @@
   }
   function veilCancel() {
     if (veilTimer) { clearTimeout(veilTimer); veilTimer = null; }
-    if (!document.hidden && document.hasFocus()) veilOff();
+    if (!document.hidden && document.hasFocus()) {
+      markPrinting(false);      /* 回到页面即表示打印面板已关闭 */
+      veilOff();
+    }
   }
   document.addEventListener('visibilitychange', function () {
     if (printing) return;
