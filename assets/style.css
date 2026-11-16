@@ -132,6 +132,14 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   border:1px solid rgba(200,16,46,.35);border-radius:999px;background:rgba(200,16,46,.06)}
 .hero-tag{margin:0;color:var(--muted);font-size:13px;letter-spacing:.12em}
 
+/* 未定稿印章 */
+.seal{width:70px;height:70px;margin-left:auto;flex:none;color:var(--red);
+  transform:rotate(-7deg);opacity:.85;mix-blend-mode:multiply;overflow:visible}
+.seal .seal-box{fill:none;stroke:currentColor;stroke-width:7}
+.seal text{fill:currentColor;font-family:var(--serif);font-size:26px;font-weight:700;text-anchor:middle}
+.hero-note{margin:24px 0 0;padding-left:13px;border-left:2px solid rgba(200,16,46,.32);
+  color:var(--muted);font-size:13px;line-height:1.9;letter-spacing:.02em;max-width:40em}
+
 .hero-credits{display:flex;flex-wrap:wrap;gap:6px 22px;margin:42px 0 0;padding-top:26px;
   border-top:1px solid rgba(200,16,46,.24);font-size:13.5px;color:var(--paper2)}
 .hero-credits b{font-weight:400;color:var(--muted);margin-right:8px;letter-spacing:.1em}
@@ -147,6 +155,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   background:linear-gradient(90deg,var(--red),var(--gold))}
 @media (max-width:640px){
   .hero-credits .hc-lead{border-right:0;padding-right:0}
+  .seal{width:54px;height:54px;margin-left:0}
 }
 
 .hero-go{display:inline-flex;align-items:center;gap:9px;margin-top:38px;padding:13px 32px;
