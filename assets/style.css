@@ -11,7 +11,7 @@
   --muted:#6d5a52; --dim:#8a756c;
   --red:#c8102e; --red-2:#a30f23; --red-3:#e0313f; --ember:#b87a14; --gold:#c9a227;
   --line:rgba(43,31,27,.15); --line-2:rgba(43,31,27,.08);
-  --serif:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+  --serif:"Noto Serif SC","Songti SC","STSong","Source Han Serif SC","SimSun",serif;
   --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
   --fs:16px;
   --wrap:1180px;
@@ -32,6 +32,16 @@ body::before{
                    radial-gradient(circle at 88% 72%,rgba(200,16,46,.06),transparent 44%);
 }
 main{position:relative;z-index:1}
+/* 纸纹：细颗粒 + 纤维线，叠在内容之下 */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background-image:
+    radial-gradient(rgba(43,31,27,.10) .5px,transparent .5px),
+    radial-gradient(rgba(255,255,255,.55) .6px,transparent .6px),
+    repeating-linear-gradient(92deg,rgba(43,31,27,.028) 0 1px,transparent 1px 4px);
+  background-size:3px 3px,5px 5px,100% 100%;
+  background-position:0 0,2px 3px,0 0;
+}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02em}
 ::selection{background:var(--red);color:#fff}
@@ -51,10 +61,15 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   letter-spacing:.06em;white-space:nowrap}
 .brand-mark{width:15px;height:15px;fill:var(--red);flex:none}
 .topnav{display:flex;gap:2px;margin-left:auto}
-.topnav a{font-size:13.5px;color:var(--muted);padding:6px 11px;border-radius:999px;
-  transition:color .2s,background .2s;white-space:nowrap}
-.topnav a:hover{color:var(--paper);background:rgba(43,31,27,.05)}
-.topnav a.on{color:var(--red);background:rgba(200,16,46,.1);font-weight:600}
+.topnav a{position:relative;font-size:13.5px;color:var(--muted);padding:7px 12px;border-radius:999px;
+  transition:color .25s var(--ease),background .25s var(--ease);white-space:nowrap}
+.topnav a::after{content:"";position:absolute;left:13px;right:13px;bottom:2px;height:1.5px;
+  background:var(--red);border-radius:2px;transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--ease)}
+.topnav a:hover{color:var(--paper);background:rgba(43,31,27,.045)}
+.topnav a:hover::after{transform:scaleX(1)}
+.topnav a.on{color:var(--red);font-weight:600;background:transparent}
+.topnav a.on::after{transform:scaleX(1)}
 .toptools{display:flex;gap:6px;align-items:center}
 .tbtn{font-family:var(--sans);font-size:12.5px;color:var(--paper2);cursor:pointer;white-space:nowrap;
   background:rgba(43,31,27,.04);border:1px solid var(--line);border-radius:7px;
@@ -69,7 +84,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 /* ---------- 封面 ---------- */
 .hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr);
   align-items:center;gap:clamp(24px,4vw,56px);
-  max-width:var(--wrap);margin:0 auto;padding:104px clamp(18px,4vw,34px) 74px;position:relative;overflow:hidden;
+  max-width:var(--wrap);margin:0 auto;padding:92px clamp(18px,4vw,34px) 58px;position:relative;overflow:hidden;
   background:
     radial-gradient(ellipse 62% 52% at 78% 26%,rgba(200,16,46,.12),transparent 62%),
     radial-gradient(ellipse 58% 46% at 12% 84%,rgba(200,16,46,.09),transparent 64%),
@@ -91,7 +106,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 .hero-inner{position:relative;z-index:2;order:1;text-align:left}
 
 /* 团队署名绶带 */
-.hero-team{margin:0 0 32px;position:relative}
+.hero-team{margin:0 0 24px;position:relative}
 .hero-team .flag-star{position:absolute;left:20px;top:50%;transform:translateY(-50%);
   z-index:2;font-size:15px;line-height:1;color:var(--gold);
   text-shadow:0 1px 3px rgba(90,0,16,.6);pointer-events:none}
@@ -122,10 +137,10 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 .hero-title .dot{color:var(--gold);margin:0 .06em;font-size:.58em;vertical-align:.18em}
 .hero-title .yr{display:block;font-size:.4em;letter-spacing:.42em;color:var(--red);
   margin-top:.24em;padding-left:.2em}
-.hero-title::after{content:"";display:block;width:104px;height:3px;margin:26px 0 0;
+.hero-title::after{content:"";display:block;width:104px;height:3px;margin:20px 0 0;
   background:linear-gradient(90deg,var(--gold),rgba(201,162,39,0))}
 
-.hero-spec{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:26px 0 8px}
+.hero-spec{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:20px 0 4px}
 .hero-ver{margin:0;color:var(--dim);font-size:12.5px;letter-spacing:.1em}
 .hero-format{display:inline-block;margin:0;padding:6px 20px;font-family:var(--serif);
   font-size:17px;letter-spacing:.16em;color:var(--red);font-weight:600;
@@ -137,10 +152,10 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   transform:rotate(-7deg);opacity:.85;mix-blend-mode:multiply;overflow:visible}
 .seal .seal-box{fill:none;stroke:currentColor;stroke-width:7}
 .seal text{fill:currentColor;font-family:var(--serif);font-size:26px;font-weight:700;text-anchor:middle}
-.hero-note{margin:24px 0 0;padding-left:13px;border-left:2px solid rgba(200,16,46,.32);
+.hero-note{margin:18px 0 0;padding-left:13px;border-left:2px solid rgba(200,16,46,.32);
   color:var(--muted);font-size:13px;line-height:1.9;letter-spacing:.02em;max-width:40em}
 
-.hero-credits{display:flex;flex-wrap:wrap;gap:6px 22px;margin:42px 0 0;padding-top:26px;
+.hero-credits{display:flex;flex-wrap:wrap;gap:6px 22px;margin:28px 0 0;padding-top:20px;
   border-top:1px solid rgba(200,16,46,.24);font-size:13.5px;color:var(--paper2)}
 .hero-credits b{font-weight:400;color:var(--muted);margin-right:8px;letter-spacing:.1em}
 .hero-credits .dim{color:var(--dim)}
@@ -158,7 +173,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   .seal{width:54px;height:54px;margin-left:0}
 }
 
-.hero-go{display:inline-flex;align-items:center;gap:9px;margin-top:38px;padding:13px 32px;
+.hero-go{display:inline-flex;align-items:center;gap:9px;margin-top:30px;padding:12px 28px;
   background:linear-gradient(135deg,#e0313f,var(--red));border:1px solid #8e0b20;border-radius:999px;
   color:#fff;font-size:15px;letter-spacing:.16em;font-weight:600;
   box-shadow:0 14px 28px rgba(200,16,46,.26);transition:all .25s var(--ease)}
@@ -171,8 +186,14 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 .sec+.sec{border-top:1px solid var(--line-2)}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(18px,4vw,34px)}
 .sec-title{font-size:clamp(27px,4.4vw,42px);display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
-.sec-title .idx{font-family:var(--sans);font-size:12px;letter-spacing:.24em;color:var(--red);
-  border:1px solid rgba(200,16,46,.4);border-radius:999px;padding:3px 10px;transform:translateY(-4px)}
+.sec-title .idx{position:relative;font-family:var(--sans);font-size:12px;letter-spacing:.24em;
+  color:var(--red);border:1px solid rgba(200,16,46,.4);border-radius:999px;padding:3px 10px;
+  transform:translateY(-4px)}
+.sec-title .idx::before{content:"";position:absolute;left:-9px;top:50%;width:5px;height:5px;
+  background:var(--gold);transform:translateY(-50%) rotate(45deg)}
+/* 章节标题下的金红渐变细线 */
+.sec-title::after{content:"";display:block;width:100%;max-width:340px;height:1px;margin-top:14px;
+  background:linear-gradient(90deg,rgba(200,16,46,.55),rgba(201,162,39,.45) 42%,rgba(201,162,39,0))}
 .sec-lead{color:var(--muted);font-size:14.5px;max-width:64ch;margin:0 0 30px}
 .sub-title{font-family:var(--serif);font-size:19px;margin:52px 0 16px;color:var(--paper2)}
 .note{font-size:12.5px;color:var(--dim);margin-top:14px}
@@ -180,8 +201,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 /* ---------- 剧情简介 ---------- */
 .story p{font-family:var(--serif);font-size:17.5px;line-height:2.15;color:var(--paper2);
   max-width:70ch;margin:0 0 26px}
-.story p:first-child::first-letter{font-size:2.9em;float:left;line-height:.94;margin:.06em .14em 0 0;
-  color:var(--red);font-family:var(--serif)}
+.story p:first-child{font-size:18.5px;color:var(--paper)}
+.story p:first-child::first-letter{font-size:1em;float:none;line-height:inherit;margin:0;color:inherit;
+  font-family:var(--serif);font-weight:600}
 .story-key{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;
   margin-top:46px;background:var(--line-2);border:1px solid var(--line-2)}
 .story-key>div{background:var(--ink2);padding:20px 22px}
@@ -615,3 +637,143 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
 @media (max-width:900px){
   .scroll-hint{display:block}
 }
+
+/* ============================================================
+   ── 升级追加：封面剧情导语 / 史实小传卡片 / 入场动效 / 质感
+   ============================================================ */
+
+/* ---------- 封面：剧情导语 ---------- */
+.hero-lede{
+  position:relative;margin:20px 0 0;padding:18px 22px 19px 24px;max-width:40em;
+  border:1px solid rgba(200,16,46,.16);border-left:3px solid var(--red);border-radius:3px 12px 12px 3px;
+  background:linear-gradient(100deg,rgba(200,16,46,.055),rgba(201,162,39,.05) 62%,rgba(255,255,255,0));
+  box-shadow:0 14px 34px rgba(43,31,27,.06);
+}
+.hl-label{display:flex;align-items:center;gap:10px;margin:0 0 10px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.34em;color:var(--red);font-weight:500}
+.hl-label i{flex:1;height:1px;max-width:46px;background:linear-gradient(90deg,var(--red),rgba(200,16,46,0))}
+.hl-label i:last-child{background:linear-gradient(90deg,rgba(200,16,46,0),var(--red));flex:none;max-width:16px}
+.hl-text{margin:0;font-family:var(--serif);font-size:15.5px;line-height:1.95;color:var(--paper2);
+  letter-spacing:.01em;text-align:justify}
+.hl-more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  font-family:var(--sans);font-size:12.5px;letter-spacing:.14em;color:var(--red-2);
+  border-bottom:1px solid rgba(200,16,46,.32);padding-bottom:3px;transition:all .25s var(--ease)}
+.hl-more i{font-style:normal;transition:transform .3s var(--ease)}
+.hl-more:hover{color:var(--red);border-bottom-color:var(--red)}
+.hl-more:hover i{transform:translateX(4px)}
+
+/* ---------- 封面：双 CTA ---------- */
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero-cta .hero-go{margin-top:0}
+.hero-go.ghost{background:transparent;color:var(--red-2);border-color:rgba(200,16,46,.4);
+  box-shadow:none;font-weight:500}
+.hero-go.ghost:hover{background:rgba(200,16,46,.07);color:var(--red);border-color:var(--red);
+  box-shadow:0 10px 24px rgba(200,16,46,.14)}
+.hero-go.ghost:hover i{transform:translateY(3px)}
+
+/* ---------- 封面：1928 描边字 ---------- */
+.hero-title .yr{
+  color:transparent;-webkit-text-stroke:1.9px rgba(183,15,40,.86);
+  text-shadow:none;letter-spacing:.46em;
+}
+.hero-title .yr::first-line{color:transparent}
+
+/* ---------- 史实小传：卡片 ---------- */
+.sec-figures{background:
+  radial-gradient(ellipse 60% 50% at 12% 8%,rgba(200,16,46,.05),transparent 60%),
+  radial-gradient(ellipse 50% 44% at 92% 88%,rgba(201,162,39,.06),transparent 62%)}
+.fig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:26px;margin-top:8px}
+.fig-card{
+  position:relative;display:flex;flex-direction:column;padding:30px 30px 28px;
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,252,248,.9));
+  border:1px solid var(--line-2);border-radius:14px;
+  box-shadow:0 2px 4px rgba(43,31,27,.03),0 18px 42px rgba(43,31,27,.07);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease);
+}
+.fig-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:14px 14px 0 0;
+  background:linear-gradient(90deg,var(--red),var(--gold) 62%,rgba(201,162,39,0))}
+.fig-card:hover{transform:translateY(-5px);
+  box-shadow:0 4px 8px rgba(43,31,27,.04),0 28px 60px rgba(43,31,27,.12);
+  border-color:rgba(200,16,46,.22)}
+
+/* 头部 */
+.fc-head{padding-bottom:20px;border-bottom:1px solid var(--line-2)}
+.fc-name{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.fc-name h3{margin:0;font-family:var(--serif);font-size:29px;letter-spacing:.14em;color:var(--red-2);line-height:1.2}
+.fc-life{margin:0;display:flex;align-items:center;gap:7px;font-family:var(--sans);
+  font-size:12px;letter-spacing:.1em;color:var(--dim);font-variant-numeric:tabular-nums}
+.fc-life .dot{color:var(--gold)}
+.fc-title{margin:10px 0 0;font-family:var(--serif);font-size:14.5px;line-height:1.75;
+  color:var(--paper2);letter-spacing:.02em}
+
+/* 「第一」徽章 */
+.fc-firsts{list-style:none;margin:20px 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.fc-first{display:inline-flex;align-items:center;gap:8px;padding:5px 13px 5px 6px;border-radius:999px;
+  background:linear-gradient(100deg,rgba(200,16,46,.09),rgba(201,162,39,.11));
+  border:1px solid rgba(200,16,46,.2);font-size:12.5px;color:var(--red-2);letter-spacing:.02em}
+.fc-first .mark{flex:none;display:inline-block;font-style:normal;font-family:var(--sans);font-size:9.5px;
+  font-weight:700;letter-spacing:.06em;color:#fff;background:var(--red);border-radius:999px;
+  padding:3px 7px;line-height:1;transform:rotate(-2deg)}
+
+/* 生平时间轴 */
+.fc-timeline{list-style:none;margin:22px 0 0;padding:0 0 0 18px;position:relative}
+.fc-timeline::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(180deg,rgba(200,16,46,.34),rgba(201,162,39,.24),rgba(201,162,39,0))}
+.fc-item{position:relative;padding:0 0 20px}
+.fc-item::before{content:"";position:absolute;left:-18px;top:7px;width:9px;height:9px;border-radius:50%;
+  background:#fff;border:1.5px solid var(--red);box-shadow:0 0 0 3px rgba(200,16,46,.09)}
+.fc-y{display:block;font-family:var(--sans);font-size:11.5px;letter-spacing:.14em;color:var(--red);
+  font-variant-numeric:tabular-nums;margin-bottom:5px}
+.fc-t{margin:0;font-size:14px;line-height:1.95;color:var(--paper2);text-align:justify}
+
+/* 剧中对应 */
+.fc-play{margin-top:auto;padding:16px 18px;border-radius:10px;background:rgba(43,31,27,.035);
+  border-left:2px solid rgba(201,162,39,.7)}
+.fc-play-l{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.26em;
+  color:var(--muted);margin-bottom:7px}
+.fc-play-t{margin:0;font-family:var(--serif);font-size:13.5px;line-height:1.9;color:var(--paper2)}
+.fig-src{margin:28px 0 0;font-size:12px;line-height:1.9;color:var(--dim);max-width:70ch}
+
+/* ---------- 入场动效（默认可见，动效只是增强） ---------- */
+@media (prefers-reduced-motion:no-preference){
+  html.px-js .sec-title,html.px-js .sec-lead,html.px-js .story > p,html.px-js .story-key > div,
+  html.px-js .o-stats > div,html.px-js .o-body > p,
+  html.px-js .o-figs .o-fig,html.px-js .draft-note,html.px-js .dm-row,html.px-js .dm-note,
+  html.px-js .guide-act,html.px-js .fig-card,
+  html.px-js .star-grid > *,html.px-js .m-lead,html.px-js .m-stats > div,html.px-js .m-points > *,
+  html.px-js .m-brief,html.px-js .tl-inner > li,html.px-js .end-wrap > *{
+    opacity:0;transform:translate3d(0,16px,0);
+    transition:opacity .78s cubic-bezier(.22,.61,.24,1),transform .78s cubic-bezier(.22,.61,.24,1);
+  }
+  html.px-js .sec-title.in,html.px-js .sec-lead.in,html.px-js .story > p.in,
+  html.px-js .story-key > div.in,html.px-js .o-stats > div.in,html.px-js .o-body > p.in,
+  html.px-js .o-figs .o-fig.in,html.px-js .draft-note.in,html.px-js .dm-row.in,html.px-js .dm-note.in,
+  html.px-js .guide-act.in,html.px-js .fig-card.in,
+  html.px-js .star-grid > *.in,html.px-js .m-lead.in,html.px-js .m-stats > div.in,
+  html.px-js .m-points > *.in,html.px-js .m-brief.in,html.px-js .tl-inner > li.in,
+  html.px-js .end-wrap > *.in{opacity:1;transform:none}
+}
+
+/* ---------- 窄屏适配 ---------- */
+@media (max-width:900px){
+  .fig-grid{grid-template-columns:1fr}
+  .fig-card{padding:24px 20px 22px}
+}
+@media (max-width:640px){
+  .hero-lede{padding:16px 16px 18px 18px}
+  .hl-text{font-size:15px;line-height:1.95}
+  .hero-cta{gap:10px}
+  .hero-cta .hero-go{padding:11px 22px;font-size:14px}
+  .fc-name h3{font-size:25px}
+}
+@media (max-width:400px){
+  .fig-grid{grid-template-columns:1fr}
+  .fc-firsts{gap:6px}
+  .fc-first{font-size:11.5px;padding-right:11px}
+}
+
+/* ---------- 人物表：职务栏「第一 / 首任」高亮 ---------- */
+.role-cell{color:var(--paper2)}
+.role-cell .hl-first{font-style:normal;font-weight:600;color:var(--red-2);
+  background:linear-gradient(100deg,rgba(200,16,46,.1),rgba(201,162,39,.11));
+  border-radius:3px;padding:1px 4px;white-space:nowrap}

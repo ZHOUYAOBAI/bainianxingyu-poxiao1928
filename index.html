@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>百年星语·破晓 1928 ｜ 音乐剧数字剧本</title>
 <meta name="description" content="云南民族大学 马笛红色音乐剧原创团队《百年星语·破晓 1928》三幕十四场。数字剧本：剧情简介、人物表、分曲表、全本正文（28 首曲目）、试听 demo、时间线与第三颗星。">
+<link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/gate.css">
-<script>try{if(sessionStorage.getItem('px1928_unlocked')==='1'){document.documentElement.className+=' px-unlocked'}else{document.documentElement.className+=' px-locked'}}catch(e){document.documentElement.className+=' px-locked'}</script>
+<script>document.documentElement.className+=' px-js';try{if(sessionStorage.getItem('px1928_unlocked')==='1'){document.documentElement.className+=' px-unlocked'}else{document.documentElement.className+=' px-locked'}}catch(e){document.documentElement.className+=' px-locked'}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23100e0d'/><path d='M16 7l2.6 5.3 5.9.9-4.3 4.1 1 5.8L16 20.4l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z' fill='%23c1352b'/></svg>">
 </head>
 <body>
@@ -79,11 +80,12 @@
     <span>百年星语<span class="brand-sub">·破晓 1928</span></span>
   </a>
   <nav class="topnav" id="topnav">
+    <a href="#story">剧情</a>
     <a href="#origin">缘起</a>
     <a href="#demo">试听</a>
-    <a href="#story">剧情</a>
     <a href="#guide">导览</a>
     <a href="#people">人物</a>
+    <a href="#figures">史实</a>
     <a href="#score">分曲</a>
     <a href="#script">剧本</a>
     <a href="#timeline">年表</a>
@@ -100,11 +102,12 @@
 </header>
 
 <div class="drawer" id="drawer" hidden>
+  <a href="#story">剧情简介</a>
   <a href="#origin">创作缘起</a>
   <a href="#demo">试听</a>
-  <a href="#story">剧情简介</a>
   <a href="#guide">分幕导览</a>
   <a href="#people">人物表</a>
+  <a href="#figures">史实小传</a>
   <a href="#score">分曲表</a>
   <a href="#script">剧本正文</a>
   <a href="#timeline">年表</a>
@@ -314,6 +317,11 @@
         <text x="50" y="88">稿</text>
       </svg>
     </div>
+    <div class="hero-lede">
+      <p class="hl-label"><i></i>剧情导语<i></i></p>
+      <p class="hl-text" id="heroLede"></p>
+      <a class="hl-more" href="#story">读完整剧情简介<i aria-hidden="true">→</i></a>
+    </div>
     <p class="hero-tag">（云南本土红色题材）</p>
     <p class="hero-credits">
       <span class="hc-lead"><b class="lb">团队负责人</b><b class="who">马笛</b></span>
@@ -322,19 +330,30 @@
       <span class="dim">2026 年 11 月中稿</span>
     </p>
     <p class="hero-note">本页为剧本展示网站，所呈为中稿文本，非定本。故事线如何推进、情节与文本如何改动，编者将在后续修订中决定，以最终定稿为准。</p>
-    <a class="hero-go" href="#script">读全本正文<i>↓</i></a>
+    <div class="hero-cta">
+      <a class="hero-go" href="#story">剧情简介<i>↓</i></a>
+      <a class="hero-go ghost" href="#script">读全本正文<i>↓</i></a>
+    </div>
   </div>
 </section>
 
-<!-- ══════════ 创作缘起 ══════════ -->
-<!-- ══════════ 创作缘起 ══════════ -->
-<!-- ══════════ 试听 ══════════ -->
-<!-- ══════════ 创作缘起 ══════════ -->
-<!-- ══════════ 试听 ══════════ -->
+<!-- ══════════ 剧情简介 ══════════ -->
+<section class="sec" id="story">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="idx">01</span>剧情简介</h2>
+    <div class="story" id="storyBody"></div>
+    <div class="story-key">
+      <div><b>时代</b><span>1928.10.13 — 1930.12.31 ／ 2024.09 — 2026.07</span></div>
+      <div><b>结构</b><span>序幕 · 三幕 · 终幕（上下）· 十一场 · 二十八首</span></div>
+      <div><b>体裁规则</b><span>现代线全部说白，历史线全部唱；每段插叙由现代线的一个具体动作触发</span></div>
+      <div><b>唯一隐喻</b><span>那根没绣完的线</span></div>
+    </div>
+  </div>
+</section>
 <!-- ══════════ 创作缘起 ══════════ -->
 <section class="sec sec-origin" id="origin">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">01</span>创作缘起</h2>
+    <h2 class="sec-title"><span class="idx">02</span>创作缘起</h2>
     <div class="o-lead">
       <p class="o-lead-text">本剧由云南民族大学马笛团队于2026年启动创作，计划2027年3月完成定稿并开始排练、年内首演，献礼中国人民解放军建军100周年。</p>
     </div>
@@ -352,29 +371,15 @@
   </div>
 </section>
 
-<!-- ══════════ 试听 ══════════ -->
 <section class="sec sec-demo" id="demo">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">02</span>试听</h2>
+    <h2 class="sec-title"><span class="idx">03</span>试听</h2>
     <p class="sec-lead" id="demoLead"></p>
     <div class="dm-list" id="demoList"></div>
     <p class="dm-note" id="demoNote"></p>
   </div>
 </section>
 
-<!-- ══════════ 剧情简介 ══════════ -->
-<section class="sec" id="story">
-  <div class="wrap">
-    <h2 class="sec-title"><span class="idx">03</span>剧情简介</h2>
-    <div class="story" id="storyBody"></div>
-    <div class="story-key">
-      <div><b>时代</b><span>1928.10.13 — 1930.12.31 ／ 2024.09 — 2026.07</span></div>
-      <div><b>结构</b><span>序幕 · 三幕 · 终幕（上下）· 十一场 · 二十八首</span></div>
-      <div><b>体裁规则</b><span>现代线全部说白，历史线全部唱；每段插叙由现代线的一个具体动作触发</span></div>
-      <div><b>唯一隐喻</b><span>那根没绣完的线</span></div>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════ 分幕导览 ══════════ -->
 <section class="sec sec-guide" id="guide">
@@ -383,8 +388,8 @@
     <p class="sec-lead" id="guideLead"></p>
     <p class="draft-note">
       <b>稿次说明</b>本节取自剧方另提供的<strong>音乐剧 14 场版</strong>分幕导览，含每场音乐设计。
-      本节场次编号与唱段名属该稿，与正文 v15 的场号及分曲表不同稿次并存；
-      <strong>正文场号与分曲表以 v15 为准</strong>。详见页脚编者注②。
+      本节场次编号与唱段名属该稿，与正文的场号及分曲表不同稿次并存；
+      <strong>正文场号与分曲表以本页中稿为准</strong>。详见页脚编者注②。
     </p>
     <div id="guideActs"></div>
     <h3 class="sub-title">场次节奏总览</h3>
@@ -419,10 +424,23 @@
   </div>
 </section>
 
+<!-- ══════════ 史实小传 ══════════ -->
+<section class="sec sec-figures" id="figures">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="idx">06</span>史实小传</h2>
+    <p class="sec-lead">剧中四位先烈的生平职务，逐一核对公开史料后列出。他们不是虚构人物，名字、职务与「第一」都有出处。</p>
+    <p class="draft-note">
+      <b>史实与虚构</b>以下生平、年份、职务均据公开史料整理；剧中具体场景、台词与人物关系为艺术虚构。人物小传与剧本正文分列，供对照参考。
+    </p>
+    <div class="fig-grid" id="figGrid"></div>
+    <p class="fig-src">资料来源：云南省政协、云南省人大、人民日报／人民网党史频道、新华社「英雄烈士谱」、中国军网、《中共云南党史》，以及云南省档案馆、查尼皮会议纪念馆公开资料。</p>
+  </div>
+</section>
+
 <!-- ══════════ 分曲表 ══════════ -->
 <section class="sec" id="score">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">06</span>分曲表</h2>
+    <h2 class="sec-title"><span class="idx">07</span>分曲表</h2>
     <p class="sec-lead">二十八首。点任一行跳到正文对应曲目。</p>
     <div class="toolbar">
       <div class="chips" id="songFilters"></div>
@@ -442,7 +460,7 @@
 <!-- ══════════ 剧本正文 ══════════ -->
 <section class="sec sec-script" id="script">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">07</span>剧本正文</h2>
+    <h2 class="sec-title"><span class="idx">08</span>剧本正文</h2>
     <div class="toolbar script-tools">
       <input class="search wide" id="scriptSearch" type="search" placeholder="在正文中检索：角色、曲名、台词…" autocomplete="off">
       <div class="spacer"></div>
@@ -461,7 +479,7 @@
 <!-- ══════════ 年表 ══════════ -->
 <section class="sec" id="timeline">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">08</span>年表</h2>
+    <h2 class="sec-title"><span class="idx">09</span>年表</h2>
     <p class="sec-lead">一条直线九十六年。每一格都是一个人真的会遇到的日子。</p>
     <ol class="tl" id="tl"></ol>
     <p class="scroll-hint">← 时间轴可左右滑动 →</p>
@@ -471,7 +489,7 @@
 <!-- ══════════ 第三颗星 ══════════ -->
 <section class="sec sec-star" id="star">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">09</span>第三颗星</h2>
+    <h2 class="sec-title"><span class="idx">10</span>第三颗星</h2>
     <div class="star-grid">
       <figure class="star-fig">
         <svg viewBox="0 0 300 300" role="img" aria-label="红心布上的三颗星，第三颗的位置上是一个「念」字">
@@ -516,7 +534,7 @@
 <!-- ══════════ 创作意义 ══════════ -->
 <section class="sec sec-meaning" id="meaning">
   <div class="wrap">
-    <h2 class="sec-title"><span class="idx">10</span>创作意义</h2>
+    <h2 class="sec-title"><span class="idx">11</span>创作意义</h2>
     <p class="sec-lead">面向校领导的汇报表述。以下内容为作者原稿。</p>
     <p class="draft-note"><b>拟稿对象</b>原稿拟稿对象为云南民族大学尹世堂副校长 · 民大艺术学院。</p>
 
@@ -557,14 +575,16 @@
 
 <footer class="foot">
   <p>《百年星语·破晓 1928》音乐剧 · 数字剧本</p>
-  <p class="dim">内容依据 2026 年 11 月中稿（v15），按原序完整呈现，未作删改。</p>
+  <p class="dim">内容依据 2026 年 11 月中稿，按原序完整呈现，未作删改。</p>
   <p class="colophon">编者注</p>
-  <p class="dim">① 本页依《百年星语·破晓 1928》v15 中稿呈现，未作改写、增补或删节，仅作版式与阅读工具。</p>
-  <p class="dim">② 第 04 节「分幕导览」与第 10 节「创作意义」取自剧方另提供的分幕稿，其场次编号与唱段名与正文 v15 不同稿次并存；正文场号与分曲表以 v15 为准。</p>
-  <p class="dim">③ 第 01 节所配查尼皮会址三图为公开报道图片，仅作场景示意，非剧照、非文物，逐张来源见图注。</p>
+  <p class="dim">① 本页依《百年星语·破晓 1928》2026 年 11 月中稿呈现，未作改写、增补或删节，仅作版式与阅读工具。</p>
+  <p class="dim">② 第 04 节「分幕导览」取自剧方另提供的 14 场分幕稿，其场次编号与唱段名与正文不同稿次并存；正文场号与分曲表以本页中稿为准。第 11 节「创作意义」为面向校领导的汇报表述。</p>
+  <p class="dim">③ 第 02 节所配查尼皮会址三图为公开报道图片，仅作场景示意，非剧照、非文物，逐张来源见图注。</p>
+  <p class="dim">④ 第 06 节「史实小传」所列生平、年份与职务均据公开史料整理，来源见该节末；剧中场景、台词与人物关系为艺术虚构。</p>
 </footer>
 
 <script src="assets/data.js"></script>
+<script src="assets/figures.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/gate.js"></script>
 </body>

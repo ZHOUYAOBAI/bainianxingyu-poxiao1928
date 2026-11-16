@@ -19,6 +19,16 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
   };
+  /* 职务栏：把「第一／首任／最早」这类说法标红 */
+  var markFirst = function (text) {
+    var td = el('td', 'role-cell');
+    String(text || '').split(/([，、])/).forEach(function (part) {
+      if (!part) return;
+      if (/第一|首任|最早|第一位/.test(part)) td.appendChild(el('em', 'hl-first', part));
+      else td.appendChild(document.createTextNode(part));
+    });
+    return td;
+  };
 
   /* ───────────── 封面引用 ───────────── */
   (function hero() {
@@ -47,6 +57,10 @@
     });
     var ver = $('#heroVer');
     if (ver) ver.textContent = m.date.replace(/[（）]/g, '');
+
+    /* 首屏剧情导语：取正文剧情简介首段 */
+    var lede = $('#heroLede');
+    if (lede && D.synopsis && D.synopsis.length) lede.textContent = D.synopsis[0];
   })();
 
   /* ───────────── 01 剧情简介 ───────────── */
@@ -54,6 +68,64 @@
     var box = $('#storyBody');
     D.synopsis.forEach(function (p) {
       box.appendChild(el('p', null, p));
+    });
+  })();
+
+  /* ───────────── 史实小传 · 四位先烈 ───────────── */
+  (function figures() {
+    var grid = $('#figGrid');
+    var F = window.PX_FIGURES;
+    if (!grid || !F || !F.length) return;
+
+    F.forEach(function (f, i) {
+      var card = el('article', 'fig-card');
+
+      /* 头部：姓名 · 生卒 · 籍贯 · 职务 */
+      var head = el('header', 'fc-head');
+      var nm = el('div', 'fc-name');
+      nm.appendChild(el('h3', null, f.name));
+      var meta = el('p', 'fc-life');
+      meta.appendChild(el('span', null, f.life));
+      meta.appendChild(el('span', 'dot', '·'));
+      meta.appendChild(el('span', null, f.from));
+      nm.appendChild(meta);
+      head.appendChild(nm);
+      head.appendChild(el('p', 'fc-title', f.title));
+      card.appendChild(head);
+
+      /* 「第一」徽章 */
+      if (f.firsts && f.firsts.length) {
+        var chips = el('ul', 'fc-firsts');
+        f.firsts.forEach(function (t) {
+          var li = el('li', 'fc-first');
+          li.appendChild(el('i', 'mark', '第 一'));
+          li.appendChild(el('span', null, t));
+          chips.appendChild(li);
+        });
+        card.appendChild(chips);
+      }
+
+      /* 生平时间轴 */
+      if (f.bio && f.bio.length) {
+        var ol = el('ol', 'fc-timeline');
+        f.bio.forEach(function (b) {
+          var li = el('li', 'fc-item');
+          li.appendChild(el('span', 'fc-y', b.y));
+          li.appendChild(el('p', 'fc-t', b.t));
+          ol.appendChild(li);
+        });
+        card.appendChild(ol);
+      }
+
+      /* 剧中对应 */
+      if (f.inplay) {
+        var play = el('div', 'fc-play');
+        play.appendChild(el('span', 'fc-play-l', '剧中对应'));
+        play.appendChild(el('p', 'fc-play-t', f.inplay));
+        card.appendChild(play);
+      }
+
+      grid.appendChild(card);
     });
   })();
 
@@ -343,7 +415,7 @@
         td0.appendChild(sp);
       }
       tr.appendChild(td0);
-      tr.appendChild(el('td', null, c.role));
+      tr.appendChild(markFirst(c.role));
       tr.appendChild(el('td', null, c.voice));
       tr.appendChild(el('td', null, c.age));
       tb.appendChild(tr);
@@ -768,10 +840,43 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* 区块入场：视口内交错浮现（reduced-motion 下直接可见） */
+  (function reveal() {
+    var SEL = [
+      '.sec-title', '.sec-lead', '.story > p', '.story-key > div',
+      '.o-stats > div', '.o-body > p', '.o-figs .o-fig', '.draft-note',
+      '.dm-row', '.dm-note', '.guide-act', '.fig-card',
+      '.star-grid > *', '.m-lead', '.m-stats > div', '.m-points > *',
+      '.m-brief', '.tl-inner > li', '.end-wrap > *'
+    ].join(',');
+    var items = $$(SEL);
+    if (!items.length) return;
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (n) { n.classList.add('in'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var n = en.target;
+        var g = n.parentNode;
+        var sibs = g ? Array.prototype.slice.call(g.children) : [n];
+        var i = sibs.indexOf(n);
+        n.style.transitionDelay = Math.min(i, 8) * 80 + 'ms';
+        n.classList.add('in');
+        io.unobserve(n);
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    items.forEach(function (n) { io.observe(n); });
+  })();
+
   /* 滚动高亮 */
   var topnav = $('#topnav');
   var actnav = $('#actnav');
-  var sections = ['origin', 'demo', 'story', 'guide', 'people', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
+  var sections = ['story', 'origin', 'demo', 'guide', 'people', 'figures', 'score', 'script', 'timeline', 'star', 'meaning', 'end'].map(function (id) {
     return document.getElementById(id);
   });
   var acts = $$('.act');
