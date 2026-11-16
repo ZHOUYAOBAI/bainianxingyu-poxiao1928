@@ -830,8 +830,7 @@
     if (e.target.tagName === 'A') drawer.hidden = true;
   });
 
-  /* 打印 */
-  $('#printBtn').addEventListener('click', function () { window.print(); });
+  /* 打印／导出：交由保护层 protect.js 核验导出口令后执行 */
 
   /* 进度条 */
   var prog = $('#progress');

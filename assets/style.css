@@ -76,13 +76,18 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   background:rgba(43,31,27,.04);border:1px solid var(--line);border-radius:7px;
   padding:5px 10px;transition:all .18s var(--ease)}
 .tbtn:hover{background:rgba(200,16,46,.16);border-color:rgba(200,16,46,.5);color:#fff}
-.tbtn.tprint{font-family:var(--serif);font-size:13.5px;letter-spacing:.08em}
+.tbtn.tprint{font-family:var(--serif);font-size:13.5px;letter-spacing:.08em;display:none}
+html.px-export .tbtn.tprint{display:inline-flex}
 .tmenu{display:none}
 .drawer{position:fixed;top:58px;left:0;right:0;z-index:49;background:#fff;
   border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
 .drawer a{display:block;padding:13px 22px;font-family:var(--serif);font-size:16px;
   letter-spacing:.1em;color:var(--paper2);border-bottom:1px solid var(--line-2)}
 .drawer a:hover{color:var(--red-2)}
+.drawer-export{display:block;width:100%;padding:13px 22px;text-align:left;cursor:pointer;
+  font-family:var(--serif);font-size:15px;letter-spacing:.1em;color:var(--muted);
+  background:rgba(200,16,46,.05);border:0;border-bottom:1px solid var(--line-2)}
+.drawer-export:hover{color:var(--red-2)}
 
 /* ---------- 封面 ---------- */
 .hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr);
@@ -608,6 +613,47 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   .m-brief{padding:22px 18px}
   .m-brief-text{font-size:15.5px;line-height:2.1;text-indent:2em}
   .m-brief-lead{font-size:16px;line-height:1.85;padding-left:13px}
+}
+
+/* ---------- 保护层：禁复制 / 导出口令 ---------- */
+html.px-js body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
+html.px-js input,html.px-js textarea,html.px-js .search{-webkit-user-select:text;-moz-user-select:text;user-select:text}
+
+.px-modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;
+  padding:24px;background:rgba(24,12,10,.62);backdrop-filter:blur(3px)}
+.px-modal[hidden]{display:none}
+.px-modal-box{width:min(420px,100%);padding:30px 30px 26px;background:#fffdfa;
+  border:1px solid rgba(200,16,46,.28);border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.3);
+  animation:pxModalIn .26s ease-out}
+@keyframes pxModalIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.px-modal-box.is-shake{animation:pxModalIn .26s ease-out,pxShake .42s}
+@keyframes pxShake{10%,90%{transform:translateX(-2px)}30%,70%{transform:translateX(4px)}50%{transform:translateX(-4px)}}
+.px-modal-title{margin:0 0 6px;font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.14em;color:var(--red)}
+.px-modal-tip{margin:0 0 18px;font-size:13px;line-height:1.8;color:var(--muted)}
+.px-modal-input{width:100%;padding:11px 14px;font-family:var(--serif);font-size:19px;letter-spacing:.42em;
+  text-align:center;color:var(--paper);background:#fff;border:1px solid var(--line);border-radius:3px}
+.px-modal-input:focus{outline:none;border-color:rgba(200,16,46,.55);box-shadow:0 0 0 3px rgba(200,16,46,.1)}
+.px-modal-msg{margin:10px 0 0;min-height:18px;font-size:12.5px;color:var(--muted)}
+.px-modal-msg.is-error{color:var(--red-2)}
+.px-modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.px-modal-btn{padding:9px 20px;font-family:var(--serif);font-size:14px;letter-spacing:.1em;cursor:pointer;
+  color:var(--paper2);background:#fff;border:1px solid var(--line);border-radius:3px}
+.px-modal-btn:hover{border-color:rgba(200,16,46,.45);color:var(--red-2)}
+.px-modal-btn.is-primary{color:#fff;background:var(--red);border-color:var(--red)}
+.px-modal-btn.is-primary:hover{background:var(--red-2);color:#fff}
+html.px-modal-open{overflow:hidden}
+
+/* 失焦虚化：切走窗口／标签时正文不可读，挡住「切走再截屏」与后台录屏 */
+.px-veil{position:fixed;inset:0;z-index:800;pointer-events:none;
+  -webkit-backdrop-filter:blur(26px) saturate(.45);backdrop-filter:blur(26px) saturate(.45);
+  background:rgba(24,12,10,.34);opacity:1;transition:opacity .12s linear}
+html.px-blur .px-veil{opacity:1}
+@media print{.px-veil{display:none!important}}
+
+/* 未授权打印（浏览器菜单路径）：输出虚化页 */
+@media print{
+  html.px-print-guard main{filter:blur(24px);opacity:.2}
+  html.px-print-guard .topbar,html.px-print-guard .progress,html.px-print-guard .drawer{display:none!important}
 }
 
 /* ---------- 打印 ---------- */
