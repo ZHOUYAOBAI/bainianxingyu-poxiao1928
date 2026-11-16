@@ -61,24 +61,27 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
   letter-spacing:.06em;white-space:nowrap}
 .brand-mark{width:15px;height:15px;fill:var(--red);flex:none}
 .topnav{display:flex;gap:2px;margin-left:auto}
-.topnav a{position:relative;font-size:13.5px;color:var(--muted);padding:7px 12px;border-radius:999px;
-  transition:color .25s var(--ease),background .25s var(--ease);white-space:nowrap}
-.topnav a::after{content:"";position:absolute;left:13px;right:13px;bottom:2px;height:1.5px;
+.topnav a{position:relative;font-family:var(--serif);font-size:15px;font-weight:600;
+  letter-spacing:.12em;color:var(--paper2);padding:5px 10px;border-radius:5px;
+  transition:color .28s var(--ease),background .28s var(--ease);white-space:nowrap}
+.topnav a::after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;
   background:var(--red);border-radius:2px;transform:scaleX(0);transform-origin:left;
   transition:transform .45s var(--ease)}
-.topnav a:hover{color:var(--paper);background:rgba(43,31,27,.045)}
+.topnav a:hover{color:var(--red-2);background:rgba(200,16,46,.06)}
 .topnav a:hover::after{transform:scaleX(1)}
-.topnav a.on{color:var(--red);font-weight:600;background:transparent}
+.topnav a.on{color:var(--red);font-weight:700;background:transparent}
 .topnav a.on::after{transform:scaleX(1)}
 .toptools{display:flex;gap:6px;align-items:center}
 .tbtn{font-family:var(--sans);font-size:12.5px;color:var(--paper2);cursor:pointer;white-space:nowrap;
   background:rgba(43,31,27,.04);border:1px solid var(--line);border-radius:7px;
   padding:5px 10px;transition:all .18s var(--ease)}
 .tbtn:hover{background:rgba(200,16,46,.16);border-color:rgba(200,16,46,.5);color:#fff}
+.tbtn.tprint{font-family:var(--serif);font-size:13.5px;letter-spacing:.08em}
 .tmenu{display:none}
 .drawer{position:fixed;top:58px;left:0;right:0;z-index:49;background:#fff;
   border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
-.drawer a{display:block;padding:13px 22px;font-size:15px;color:var(--paper2);border-bottom:1px solid var(--line-2)}
+.drawer a{display:block;padding:13px 22px;font-family:var(--serif);font-size:16px;
+  letter-spacing:.1em;color:var(--paper2);border-bottom:1px solid var(--line-2)}
 .drawer a:hover{color:var(--red-2)}
 
 /* ---------- 封面 ---------- */
@@ -95,10 +98,19 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 
 .lantern{position:relative;z-index:1;order:2;justify-self:center;width:min(430px,100%);
   pointer-events:none;filter:drop-shadow(0 26px 46px rgba(142,11,32,.2))}
-.lantern svg{width:100%;height:auto;display:block;animation:sway 11s ease-in-out infinite;
-  transform-origin:50% 12%}
-@keyframes sway{0%,100%{transform:rotate(-1.1deg)}50%{transform:rotate(1.1deg)}}
-.lantern .flame{animation:flick 2.4s ease-in-out infinite;transform-origin:160px 292px}
+.lantern svg{width:100%;height:auto;display:block;animation:sway 9s cubic-bezier(.45,.05,.55,.95) infinite;
+  transform-origin:50% 10%}
+@keyframes sway{
+  0%{transform:rotate(-3.1deg)}
+  15%{transform:rotate(1.6deg)}
+  31%{transform:rotate(-2.2deg)}
+  47%{transform:rotate(2.8deg)}
+  63%{transform:rotate(-1.5deg)}
+  79%{transform:rotate(1.1deg)}
+  91%{transform:rotate(-0.5deg)}
+  100%{transform:rotate(-3.1deg)}
+}
+.lantern .flame{animation:flick 2.1s ease-in-out infinite;transform-origin:160px 292px}
 @keyframes flick{0%,100%{transform:scale(1) translateY(0);opacity:.95}
   38%{transform:scale(1.06) translateY(-2px);opacity:1}
   62%{transform:scale(.97) translateY(1px);opacity:.9}}
@@ -155,21 +167,23 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 .hero-note{margin:18px 0 0;padding-left:13px;border-left:2px solid rgba(200,16,46,.32);
   color:var(--muted);font-size:13px;line-height:1.9;letter-spacing:.02em;max-width:40em}
 
-.hero-credits{display:flex;flex-wrap:wrap;gap:6px 22px;margin:28px 0 0;padding-top:20px;
-  border-top:1px solid rgba(200,16,46,.24);font-size:13.5px;color:var(--paper2)}
-.hero-credits b{font-weight:400;color:var(--muted);margin-right:8px;letter-spacing:.1em}
-.hero-credits .dim{color:var(--dim)}
-.hero-credits .hc-lead{display:inline-flex;align-items:baseline;gap:12px;
-  padding-right:22px;border-right:1px solid rgba(200,16,46,.2)}
-.hero-credits .hc-lead .lb{font-weight:400;color:var(--muted);letter-spacing:.16em;
-  margin-right:0;font-size:12.5px}
-.hero-credits .hc-lead .who{font-family:var(--serif);font-size:clamp(26px,2.5vw,36px);
-  font-weight:700;letter-spacing:.1em;color:var(--red);margin-right:0;line-height:1;
-  text-shadow:0 2px 18px rgba(200,16,46,.16)}
-.hero-credits .hc-lead .who::after{content:"";display:block;width:100%;height:2px;margin-top:7px;
+.hero-credits{display:grid;grid-template-columns:auto auto 1fr;gap:0 34px;align-items:start;
+  margin:30px 0 0;padding-top:22px;border-top:1px solid rgba(200,16,46,.24)}
+.hc-item{display:flex;flex-direction:column;gap:11px;min-width:0}
+.hc-label{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.28em;
+  color:var(--muted);white-space:nowrap;padding-bottom:2px}
+.hc-names{font-family:var(--serif);font-size:16px;letter-spacing:.1em;color:var(--paper2);line-height:1.4}
+.hc-item.hc-lead{padding-right:34px;border-right:1px solid rgba(200,16,46,.14)}
+.hc-item.hc-lead .hc-names{font-size:clamp(30px,2.8vw,40px);font-weight:700;letter-spacing:.16em;
+  color:var(--red);line-height:1;text-shadow:0 2px 18px rgba(200,16,46,.16)}
+.hc-item.hc-lead .hc-names::after{content:"";display:block;width:100%;height:2px;margin-top:9px;
   background:linear-gradient(90deg,var(--red),var(--gold))}
+@media (max-width:860px){
+  .hero-credits{grid-template-columns:1fr 1fr;gap:20px 26px;align-items:start}
+  .hc-item.hc-lead{grid-column:1/-1;padding-right:0;border-right:0}
+  .hc-item.hc-lead .hc-names::after{width:96px}
+}
 @media (max-width:640px){
-  .hero-credits .hc-lead{border-right:0;padding-right:0}
   .seal{width:54px;height:54px;margin-left:0}
 }
 
@@ -559,7 +573,8 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
   .lantern{order:1;width:min(300px,62vw)}
   .hero-inner{order:2;text-align:center}
   .hero-title::after{margin-left:auto;margin-right:auto}
-  .hero-credits{justify-content:center}
+  .hero-credits{text-align:center;justify-items:center}
+  .hc-item.hc-lead{border-right:0}
   .hero-team .flag{white-space:normal;padding:11px 20px 11px 40px;letter-spacing:.14em}
   .hero-team .flag-star{left:12px;font-size:13px}
 }

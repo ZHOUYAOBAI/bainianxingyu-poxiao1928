@@ -41,20 +41,22 @@
       ft.appendChild(el('span', 'rseg', s));
     });
     $('.hero-tag').textContent = m.tag;
-    var c = $('.hero-credits');
-    c.innerHTML = '';
-    if (m.lead) {
-      var lead = el('span', 'hc-lead');
-      lead.appendChild(el('b', 'lb', '团队负责人'));
-      lead.appendChild(el('b', 'who', m.lead));
-      c.appendChild(lead);
+    var c = $('#heroCredits');
+    if (c) {
+      c.innerHTML = '';
+      if (m.lead) {
+        var lead = el('div', 'hc-item hc-lead');
+        lead.appendChild(el('span', 'hc-label', '团队负责人'));
+        lead.appendChild(el('span', 'hc-names who', m.lead));
+        c.appendChild(lead);
+      }
+      m.credits.forEach(function (p) {
+        var item = el('div', 'hc-item');
+        item.appendChild(el('span', 'hc-label', p[0]));
+        item.appendChild(el('span', 'hc-names', p[1]));
+        c.appendChild(item);
+      });
     }
-    m.credits.forEach(function (p) {
-      var s = el('span');
-      s.appendChild(el('b', null, p[0]));
-      s.appendChild(document.createTextNode(p[1]));
-      c.appendChild(s);
-    });
     var ver = $('#heroVer');
     if (ver) ver.textContent = m.date.replace(/[（）]/g, '');
 

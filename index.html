@@ -323,12 +323,20 @@
       <a class="hl-more" href="#story">读完整剧情简介<i aria-hidden="true">→</i></a>
     </div>
     <p class="hero-tag">（云南本土红色题材）</p>
-    <p class="hero-credits">
-      <span class="hc-lead"><b class="lb">团队负责人</b><b class="who">马笛</b></span>
-      <span><b>编剧</b>白耀洲　孙子岚</span>
-      <span><b>音乐</b>彭侠颖　白耀洲　孙子岚　马笛</span>
-      <span class="dim">2026 年 11 月中稿</span>
-    </p>
+    <div class="hero-credits" id="heroCredits">
+      <div class="hc-item hc-lead">
+        <span class="hc-label">团队负责人</span>
+        <span class="hc-names who">马笛</span>
+      </div>
+      <div class="hc-item">
+        <span class="hc-label">编剧</span>
+        <span class="hc-names">白耀洲　孙子岚</span>
+      </div>
+      <div class="hc-item">
+        <span class="hc-label">音乐</span>
+        <span class="hc-names">彭侠颖　白耀洲　孙子岚　马笛</span>
+      </div>
+    </div>
     <p class="hero-note">本页为剧本展示网站，所呈为中稿文本，非定本。故事线如何推进、情节与文本如何改动，编者将在后续修订中决定，以最终定稿为准。</p>
     <div class="hero-cta">
       <a class="hero-go" href="#story">剧情简介<i>↓</i></a>
@@ -513,19 +521,30 @@
             <circle r="30" fill="none" stroke="#f4dcd6" stroke-opacity=".4" stroke-width="1.6" stroke-dasharray="5 6"/>
             <text x="0" y="14" text-anchor="middle" font-family="Songti SC,Noto Serif SC,serif" font-size="42" fill="#f6e9e3" opacity=".95">念</text>
           </g>
+          <!-- 录取通知书：折成四折，压在第三颗星的位置底下 -->
+          <g id="notice" transform="translate(149,252) rotate(-5)">
+            <rect x="-34" y="-20" width="68" height="40" rx="2" fill="#f3e7d6" opacity=".93"/>
+            <rect x="-34" y="-20" width="68" height="40" rx="2" fill="none" stroke="#c9a227" stroke-opacity=".55" stroke-width="1"/>
+            <path d="M-34 -20 L0 2 L34 -20" fill="none" stroke="#c9a227" stroke-opacity=".4" stroke-width="1"/>
+            <path d="M0 2 L0 20" stroke="#c9a227" stroke-opacity=".35" stroke-width="1"/>
+            <path d="M0 -9 L2.6 -2.6 L9.4 -1.6 L4 2.4 L5.6 9 L0 5.2 L-5.6 9 L-4 2.4 L-9.4 -1.6 L-2.6 -2.6 Z"
+                  fill="#b8372c" opacity=".9" transform="translate(0,1) scale(.62)"/>
+          </g>
           <g id="needle">
             <path d="M0 0l16-10 4 6-16 10z" fill="#e6e0d8" opacity=".9"/>
             <path d="M0 0l-5 3 1-7z" fill="#e6e0d8" opacity=".9"/>
           </g>
         </svg>
-        <figcaption>三颗星是安全，两颗星是危险。第三颗的位置上，绣的是一个「念」字。</figcaption>
+        <figcaption>三颗星是安全，两颗星是危险。第三颗的位置上，绣的是一个「念」字；再往后，压上一封折成四折的录取通知书——通知书上，有一颗星。</figcaption>
       </figure>
       <div class="star-text">
         <p class="lead">她给自己未出生的孩子缝了一件红心布襁褓，只绣了两颗星。第三颗不是来不及——是她自己留着的，说要等孩子落地、能自己认了再绣。</p>
-        <p>孩子没有落地。这个位置因此永远空着，成为全剧「无法挽回之物」：牺牲值不值得，不取决于死得多壮烈，取决于它有没有被后来的人接住。</p>
+        <p>孩子没有落地。这个位置因此空了很久，成为全剧「无法挽回之物」：牺牲值不值得，不取决于死得多壮烈，取决于它有没有被后来的人接住。</p>
         <p class="quote">终幕。吴小芸按住苏云的手，不让任何人替死者绣上那颗星——苏云在空位上绣的是一个「念」字。星留给孩子，字留给活着的人。</p>
-        <p class="quote">2026 年夏，小满把军校录取通知书折成四折，压在第三颗星的位置底下。她没有唱，她把一句「谁想弯腰，谁就能看见」说完整，然后停住。</p>
-        <p class="dim">星没有绣上，也永远绣不上。活着的人接住的是那个字，不是那颗星。</p>
+        <p class="quote">2026 年夏，小满十八岁，考上了军校。她把录取通知书折成四折，压在第三颗星的位置底下，把一句「谁想弯腰，谁就能看见」说完整，然后停住。</p>
+        <p>小满不是只会说话的旁观者。她也唱，戏份不多——No.1《追光》后半段就是她的声音；更多的时候，她用几句说白，把观众领进这段历史里。</p>
+        <p>通知书上有一颗星。</p>
+        <p class="dim">三颗星就这样补齐了：前两颗是吴澄一针一线绣上去的，第三颗不是绣的——是小满自己挣来、亲手放上去的。红心布从此不缺一颗。这一颗星是传承。</p>
       </div>
     </div>
   </div>
@@ -577,7 +596,7 @@
   <p>《百年星语·破晓 1928》音乐剧 · 数字剧本</p>
   <p class="dim">内容依据 2026 年 11 月中稿，按原序完整呈现，未作删改。</p>
   <p class="colophon">编者注</p>
-  <p class="dim">① 本页依《百年星语·破晓 1928》2026 年 11 月中稿呈现，未作改写、增补或删节，仅作版式与阅读工具。</p>
+  <p class="dim">① 本页依《百年星语·破晓 1928》2026 年 11 月中稿呈现；正文调度、台词与唱词照录，封面、剧情简介与人物表依作者最新口径著录，仅作版式与阅读工具。</p>
   <p class="dim">② 第 04 节「分幕导览」取自剧方另提供的 14 场分幕稿，其场次编号与唱段名与正文不同稿次并存；正文场号与分曲表以本页中稿为准。第 11 节「创作意义」为面向校领导的汇报表述。</p>
   <p class="dim">③ 第 02 节所配查尼皮会址三图为公开报道图片，仅作场景示意，非剧照、非文物，逐张来源见图注。</p>
   <p class="dim">④ 第 06 节「史实小传」所列生平、年份与职务均据公开史料整理，来源见该节末；剧中场景、台词与人物关系为艺术虚构。</p>
