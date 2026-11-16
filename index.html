@@ -6,9 +6,70 @@
 <title>百年星语·破晓 1928 ｜ 音乐剧数字剧本</title>
 <meta name="description" content="云南民族大学 马笛红色音乐剧原创团队《百年星语·破晓 1928》三幕十四场。数字剧本：剧情简介、人物表、分曲表、全本正文（28 首曲目）、试听 demo、时间线与第三颗星。">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/gate.css">
+<script>try{if(sessionStorage.getItem('px1928_unlocked')==='1'){document.documentElement.className+=' px-unlocked'}else{document.documentElement.className+=' px-locked'}}catch(e){document.documentElement.className+=' px-locked'}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23100e0d'/><path d='M16 7l2.6 5.3 5.9.9-4.3 4.1 1 5.8L16 20.4l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z' fill='%23c1352b'/></svg>">
 </head>
 <body>
+
+<!-- ══════════ 信封访问门 ══════════ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-label="信函访问验证">
+  <svg class="gate-mark" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6 L61.8 41.5 L97 42.6 L69 63.9 L79.4 97.3 L50 77 L20.6 97.3 L31 63.9 L3 42.6 L38.2 41.5 Z"/>
+    <circle cx="50" cy="52" r="26"/>
+  </svg>
+  <div class="gate-flash" aria-hidden="true"></div>
+  <canvas class="gate-dust" id="gateDust" aria-hidden="true"></canvas>
+
+  <div class="gate-stage">
+    <p class="gate-eyebrow"><i></i>云南民族大学 · 马笛红色音乐剧原创团队<i></i></p>
+
+    <div class="env-wrap">
+      <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="拆启信函">
+        <!-- 信纸 -->
+        <div class="env-letter" aria-hidden="true">
+          <p class="letter-head">百年星语 · 破晓 1928</p>
+          <p class="letter-l1">破晓已至</p>
+          <div class="letter-rule"></div>
+          <p class="letter-l2">数字剧本样稿　敬请翻阅</p>
+        </div>
+
+        <!-- 信封本体 -->
+        <div class="env-body">
+          <div class="env-grain" aria-hidden="true"></div>
+          <div class="env-lines" aria-hidden="true"></div>
+          <div class="env-frame" aria-hidden="true"></div>
+
+          <div class="env-addr">
+            <p class="env-to">高淑琴院长<em>亲启</em></p>
+            <div class="env-rule" aria-hidden="true"></div>
+          </div>
+
+          <p class="env-sign">云南民族大学<br>马笛红色音乐剧原创团队　敬呈</p>
+        </div>
+
+        <!-- 封口 -->
+        <div class="env-flap" aria-hidden="true"></div>
+
+        <!-- 火漆印 -->
+        <div class="env-seal" aria-hidden="true"><span>启</span></div>
+      </div>
+    </div>
+
+    <div class="gate-form" id="gateForm">
+      <label class="gf-label" for="gateCode"><i></i>启信密码<i></i></label>
+      <div class="gf-row">
+        <div class="gf-field">
+          <input id="gateCode" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" placeholder="八位数字" aria-describedby="gateHint">
+        </div>
+        <button class="gf-btn" id="gateBtn" type="button">拆　信</button>
+      </div>
+      <p class="gate-hint" id="gateHint" aria-live="polite">本页为剧本样稿，仅限受邀方查阅</p>
+    </div>
+
+    <button class="gate-snd" id="gateSnd" type="button" aria-pressed="true">声音 · 开</button>
+  </div>
+</div>
 
 <div class="progress" id="progress"></div>
 
@@ -498,5 +559,6 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/gate.js"></script>
 </body>
 </html>
