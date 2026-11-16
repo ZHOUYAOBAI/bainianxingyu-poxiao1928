@@ -94,14 +94,19 @@
 
   /* ---------- 导出入口 ---------- */
   var printOK = false;      /* 本次打印是否已授权 */
-  var printLock = false;    /* 打印过程中不触发失焦虚化 */
+  var printing = false;     /* 打印流程进行中（打印面板会抢焦点，此时不虚化） */
+  var printTimer = null;
+  function markPrinting(on) {
+    printing = on;
+    if (printTimer) { clearTimeout(printTimer); printTimer = null; }
+    if (on) printTimer = setTimeout(function () { printing = false; }, 8000);
+  }
   function doPrint() {
     printOK = true;
-    printLock = true;
+    markPrinting(true);
     setTimeout(function () {
       window.print();
       setTimeout(function () { printOK = false; }, 1200);
-      setTimeout(function () { printLock = false; }, 4000);
     }, 60);
   }
   function requestExport() {
@@ -175,7 +180,7 @@
     if (veilTimer) clearTimeout(veilTimer);
     veilTimer = setTimeout(function () {
       veilTimer = null;
-      if (printLock) return;
+      if (printing) return;
       if (document.hidden || !document.hasFocus()) veilOn();
     }, 350);
   }
@@ -184,7 +189,7 @@
     if (!document.hidden && document.hasFocus()) veilOff();
   }
   document.addEventListener('visibilitychange', function () {
-    if (printLock) return;
+    if (printing) return;
     if (document.hidden) veilOn();
     else veilCancel();
   });
@@ -193,12 +198,15 @@
 
   /* ---------- 打印：未授权则输出虚化页 ---------- */
   window.addEventListener('beforeprint', function () {
+    markPrinting(true);
+    veilOff();                       /* 打印预览需要看到清晰版面 */
     if (!printOK) html.classList.add('px-print-guard');
   });
   window.addEventListener('afterprint', function () {
     printOK = false;
-    printLock = false;
+    markPrinting(false);
     html.classList.remove('px-print-guard');
+    if (document.hidden || !document.hasFocus()) veilOn(); else veilOff();
   });
 
   /* 顶栏「打印／导出」按钮：口令通过后才出现 */
