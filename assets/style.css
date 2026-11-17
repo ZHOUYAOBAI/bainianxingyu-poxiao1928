@@ -71,7 +71,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:.02
 .topnav a:hover::after{transform:scaleX(1)}
 .topnav a.on{color:var(--red);font-weight:700;background:transparent}
 .topnav a.on::after{transform:scaleX(1)}
-.toptools{display:flex;gap:6px;align-items:center}
+.toptools{display:flex;gap:6px;align-items:center;margin-left:auto}
 .tbtn{font-family:var(--sans);font-size:12.5px;color:var(--paper2);cursor:pointer;white-space:nowrap;
   background:rgba(43,31,27,.04);border:1px solid var(--line);border-radius:7px;
   padding:5px 10px;transition:all .18s var(--ease)}
@@ -177,7 +177,7 @@ html.px-export .tbtn.tprint{display:inline-flex}
 .hc-item{display:flex;flex-direction:column;gap:11px;min-width:0}
 .hc-label{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.28em;
   color:var(--muted);white-space:nowrap;padding-bottom:2px}
-.hc-names{font-family:var(--serif);font-size:16px;letter-spacing:.1em;color:var(--paper2);line-height:1.4}
+.hc-names{font-family:var(--serif);font-size:16px;letter-spacing:.1em;color:var(--paper2);line-height:1.4;word-break:keep-all;overflow-wrap:normal}
 .hc-item.hc-lead{padding-right:34px;border-right:1px solid rgba(200,16,46,.14)}
 .hc-item.hc-lead .hc-names{font-size:clamp(30px,2.8vw,40px);font-weight:700;letter-spacing:.16em;
   color:var(--red);line-height:1;text-shadow:0 2px 18px rgba(200,16,46,.16)}
@@ -191,6 +191,12 @@ html.px-export .tbtn.tprint{display:inline-flex}
 @media (max-width:640px){
   .seal{width:54px;height:54px;margin-left:0}
 }
+@media (max-width:700px){
+  .hero-note{text-align:left;max-width:none;padding-left:11px}
+  .foot .dim{text-align:left;line-height:2.05}
+  .foot{align-items:flex-start}
+}
+
 
 .hero-go{display:inline-flex;align-items:center;gap:9px;margin-top:30px;padding:12px 28px;
   background:linear-gradient(135deg,#e0313f,var(--red));border:1px solid #8e0b20;border-radius:999px;
@@ -211,7 +217,7 @@ html.px-export .tbtn.tprint{display:inline-flex}
 .sec-title .idx::before{content:"";position:absolute;left:-9px;top:50%;width:5px;height:5px;
   background:var(--gold);transform:translateY(-50%) rotate(45deg)}
 /* 章节标题下的金红渐变细线 */
-.sec-title::after{content:"";display:block;width:100%;max-width:340px;height:1px;margin-top:14px;
+.sec-title::after{content:"";display:block;flex:1 1 0;min-width:26px;max-width:340px;height:1px;margin-top:14px;
   background:linear-gradient(90deg,rgba(200,16,46,.55),rgba(201,162,39,.45) 42%,rgba(201,162,39,0))}
 .sec-lead{color:var(--muted);font-size:14.5px;max-width:64ch;margin:0 0 30px}
 .sub-title{font-family:var(--serif);font-size:19px;margin:52px 0 16px;color:var(--paper2)}
@@ -588,6 +594,14 @@ mark{background:rgba(200,16,46,.16);color:var(--red-2,#a30f23);border-radius:2px
 @media (max-width:700px){
   html{scroll-padding-top:104px}
   .actnav{top:58px}
+  /* 手机封面收一收，首屏能看到标题与导语开头 */
+  .hero{padding-top:74px;padding-bottom:44px;gap:10px}
+  .lantern{width:min(196px,50vw)}
+  .hero-title{font-size:clamp(31px,9.2vw,40px)}
+  .hero-spec{gap:10px;margin:16px 0 2px}
+  .hero-format{font-size:15px;padding:5px 16px;letter-spacing:.12em}
+  .hero-ver{font-size:12px}
+  .hero-team .flag{font-size:12px;padding:9px 14px 9px 34px;letter-spacing:.1em}
   .say{flex-direction:column;gap:3px}
   .say-who{width:auto;text-align:left;padding-left:12px}
   .say-who::after{left:0;right:auto;top:.55em}
@@ -841,3 +855,41 @@ html.px-blur .px-veil{opacity:1}
 .role-cell .hl-first{font-style:normal;font-weight:600;color:var(--red-2);
   background:linear-gradient(100deg,rgba(200,16,46,.1),rgba(201,162,39,.11));
   border-radius:3px;padding:1px 4px;white-space:nowrap}
+
+/* ---------- 移动端：宽表改卡片 ---------- */
+@media (max-width:700px){
+  table,.songs,.cast{min-width:0}
+  .cast thead,.songs thead{display:none}
+  .cast tbody td,.songs tbody td{display:block;padding:0;border:0;white-space:normal;
+    max-width:100%;overflow-wrap:anywhere}
+
+  /* 人物表：姓名 / 身份（整行）/ 声部·年龄 */
+  .cast tbody tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;
+    padding:13px 14px;border-bottom:1px solid var(--line-2)}
+  .cast td:first-child{font-size:16px;margin-bottom:2px}
+  .cast td:nth-child(2){flex:1 0 100%;font-size:13px;line-height:1.85;color:var(--paper2)}
+  .cast td:nth-child(3),.cast td:nth-child(4){font-size:11.5px;color:var(--dim);letter-spacing:.06em}
+
+  /* 分曲表：曲号·曲名 / 形式 / 演唱·调性·拍号·速度·时长 */
+  .songs tbody tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 14px;
+    padding:13px 14px;border-bottom:1px solid var(--line-2)}
+  .songs td:first-child{font-size:12px}
+  .songs td:nth-child(2){font-size:16px}
+  .songs td:nth-child(3){flex:1 0 100%;font-size:12.5px;color:var(--paper2)}
+  .songs td:nth-child(n+4){font-size:11.5px;color:var(--dim);line-height:1.9}
+
+  mark{background:rgba(200,16,46,.07);padding:0}
+
+  /* 人物表年龄列在卡片里只剩一个「—」，窄屏隐藏 */
+  #castTable td:nth-child(4){display:none}
+
+  /* 剧终制作条：值不在中文中间断行 */
+  .end-credit dl{grid-template-columns:1fr;gap:4px 0}
+  .end-credit dt{font-size:11.5px}
+  .end-credit dd{font-size:13px;line-height:1.7;word-break:keep-all}
+
+  /* 幕标签可横向滑动，右缘给渐隐提示 */
+  .actnav{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);
+    mask-image:linear-gradient(90deg,#000 84%,transparent)}
+  .dm-play{width:44px;height:44px}
+}

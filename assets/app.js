@@ -810,17 +810,6 @@
     this.dataset.mode = 'expand';
   });
 
-  /* 字号 */
-  var fs = parseFloat(localStorage.getItem('px-fs') || 16);
-  function setFs(v) {
-    fs = Math.max(14, Math.min(22, v));
-    document.documentElement.style.setProperty('--fs', fs + 'px');
-    localStorage.setItem('px-fs', fs);
-  }
-  setFs(fs);
-  $('#fontUp').addEventListener('click', function () { setFs(fs + 1); });
-  $('#fontDown').addEventListener('click', function () { setFs(fs - 1); });
-
   /* 抽屉 */
   var drawer = $('#drawer');
   $('#menuBtn').addEventListener('click', function () {
