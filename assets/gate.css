@@ -162,6 +162,17 @@ html.px-unlocked .gate { display: none !important; }
   font-style: normal; color: var(--red-2); font-size: .74em;
   letter-spacing: .18em; margin-left: .5em; vertical-align: .14em;
 }
+/* 内部资料版：主行 + 副行 */
+.env-sub {
+  margin: .55em 0 0; font-family: var(--sans); font-weight: 400;
+  font-size: clamp(10px, 1.02vw, 12px); letter-spacing: .26em; text-indent: .26em;
+  color: rgba(122, 84, 54, .72);
+}
+.env-sub::before, .env-sub::after {
+  content: ""; display: inline-block; width: 14px; height: 1px; vertical-align: .32em;
+  margin: 0 .6em; background: linear-gradient(90deg, transparent, rgba(201, 162, 39, .75));
+}
+.env-sub::after { background: linear-gradient(90deg, rgba(201, 162, 39, .75), transparent); }
 .env-rule {
   position: relative; width: min(46%, 150px); height: 1px;
   margin: clamp(7px, 1vh, 10px) auto 0;
@@ -355,8 +366,15 @@ html.px-unlocked .gate { display: none !important; }
   .env-sign { font-size: 8.2px; }
   .letter-l1 { font-size: clamp(24px, 7vw, 34px); }
   .env-seal { --seal: 42px; }
-  .env-addr { top: 67%; }
-  .env-to { font-size: clamp(18px, 5.2vw, 24px); }
+  /* 小信封矮，主行与副行并排，避免压到左下署名 */
+  .env-addr { top: 62%; display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: baseline; gap: .1em .7em; }
+  .env-to { font-size: clamp(19px, 5.4vw, 24px); text-indent: 0; }
+  .env-sub { margin: 0; font-size: 10.5px; letter-spacing: .18em; text-indent: 0; }
+  .env-sub::before { display: none; }
+  .env-sub::after { width: 9px; margin: 0 0 0 .45em; }
+  .env-rule { flex: 0 0 100%; margin-top: 9px; }
+  .env-sign { font-size: 7.8px; bottom: 9px; }
 }
 
 @media (max-height: 700px) and (min-width: 621px) {
