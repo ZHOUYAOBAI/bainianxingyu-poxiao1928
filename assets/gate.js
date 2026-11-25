@@ -11,7 +11,7 @@
   var html = document.documentElement;
   var ROOT_KEY = 'px1928_unlocked';
   var SOUND_KEY = 'px_gate_sound';
-  var PASS = '1928' + '1413';
+  var PASS = '1928' + '2026';
 
   /* ---------- 已解锁：直接移除门页 ---------- */
   if (html.classList.contains('px-unlocked')) {
