@@ -248,7 +248,7 @@
   /* ---------- 解锁时序 ---------- */
   function unlock() {
     busy = true;
-    try { sessionStorage.setItem(ROOT_KEY, '1'); } catch (e) {}
+    try { sessionStorage.setItem(ROOT_KEY, 'v20261127b'); } catch (e) {}
 
     var seal = document.querySelector('.env-seal');
     var r = seal ? seal.getBoundingClientRect() : null;
